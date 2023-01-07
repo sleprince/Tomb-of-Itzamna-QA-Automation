@@ -259,14 +259,13 @@ MonoBehaviour:
   width: 30
   depth: 30
   scale: 6
-  straight: {fileID: 3842674731342747455, guid: 6433aee1e660b934090ae4696daa7ba6,
+  straight: {fileID: 670136403796867806, guid: 5ac2683975452b5498422c04ed19c821, type: 3}
+  crossroad: {fileID: 2256598372582011124, guid: a1ef54220ecaa124f8271988c8ed1355,
     type: 3}
-  crossroad: {fileID: 6635105658741573204, guid: b238737da622d5a4c900000455cdfd11,
+  corner: {fileID: 5615479108954022741, guid: eece060270bf3ee4099ecd5e76220fdb, type: 3}
+  tSection: {fileID: 6206676995781312726, guid: a8bade7cec2ad7c4a95ce38cdfdfaedf,
     type: 3}
-  corner: {fileID: 6110323131050388907, guid: 8af708e25513a5c49a2213ce8f1ee8d6, type: 3}
-  tSection: {fileID: 8333251690337836903, guid: 107e6d7bbdefbfa4bb907ce87af358c3,
-    type: 3}
-  deadEnd: {fileID: 7639807756676217259, guid: 03bb3c4a17ecc624abde93ee4a32a2f2, type: 3}
+  deadEnd: {fileID: 989380604137819810, guid: f9ece7e4075769b4682fcc6d4ab1d08a, type: 3}
   player: {fileID: 1933435882}
 --- !u!1 &410087039
 GameObject:

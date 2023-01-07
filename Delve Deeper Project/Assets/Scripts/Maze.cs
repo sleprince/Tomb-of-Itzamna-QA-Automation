@@ -80,28 +80,28 @@ public class Maze : MonoBehaviour
                     wall.transform.localScale = new Vector3(scale, scale, scale);
                     wall.transform.position = pos;*/
                 }
-                else if (Search2D(x, z, new int[] { 5, 1, 5, 0, 0, 1, 5, 1, 5 }))                     //horizontal dead end right
+                else if (Search2D(x, z, new int[] { 5, 1, 5, 0, 0, 1, 5, 1, 5 }))                     //horizontal dead end ->|
                 {
                     GameObject go = Instantiate(deadEnd);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    go.transform.Rotate(0, 90, 0);
                 }
-                else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 0, 5, 1, 5 }))                     //horizontal dead end left
-                {
-                    GameObject go = Instantiate(deadEnd);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 180, 0);
-                }
-                else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 1, 5, 0, 5 }))                     //vertical dead end up
+                else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 0, 5, 1, 5 }))                     //horizontal dead end |<-
                 {
                     GameObject go = Instantiate(deadEnd);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
                     go.transform.Rotate(0, -90, 0);
                 }
-                else if (Search2D(x, z, new int[] { 5, 0, 5, 1, 0, 1, 5, 1, 5 }))                     //horizontal dead end left
+                else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 1, 5, 0, 5 }))                     //vertical dead end T
                 {
                     GameObject go = Instantiate(deadEnd);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 90, 0);
+                }
+                else if (Search2D(x, z, new int[] { 5, 0, 5, 1, 0, 1, 5, 1, 5 }))                     //vertical dead end downT
+                {
+                    GameObject go = Instantiate(deadEnd);
+                    go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    go.transform.Rotate(0, 180, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 0, 5, 1, 0, 1, 5, 0, 5 }))                     //vertical straight piece
                 {
@@ -123,47 +123,47 @@ public class Maze : MonoBehaviour
                 {
                     GameObject go = Instantiate(corner);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 180, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 0, 5, 0, 1 }))                     //upper left corner
                 {
                     GameObject go = Instantiate(corner);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 90, 0);
-                }
-                else if (Search2D(x, z, new int[] { 5, 0, 1, 1, 0, 0, 5, 1, 5 }))                     //lower right corner
-                {
-                    GameObject go = Instantiate(corner);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                }
-                else if (Search2D(x, z, new int[] { 1, 0, 5, 5, 0, 1, 5, 1, 5 }))                     //lower left corner
-                {
-                    GameObject go = Instantiate(corner);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
                     go.transform.Rotate(0, -90, 0);
+                }
+                else if (Search2D(x, z, new int[] { 5, 0, 1, 1, 0, 0, 5, 1, 5 }))                     //lower left corner
+                {
+                    GameObject go = Instantiate(corner);
+                    go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    go.transform.Rotate(0, 180, 0);
+                }
+                else if (Search2D(x, z, new int[] { 1, 0, 5, 5, 0, 1, 5, 1, 5 }))                     //lower right corner
+                {
+                    GameObject go = Instantiate(corner);
+                    go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    go.transform.Rotate(0, 90, 0);
                 }
                 else if (Search2D(x, z, new int[] { 1, 0, 1, 0, 0, 0, 5, 1, 5 }))                     //upside t section
                 {
                     GameObject go = Instantiate(tSection);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, -90, 0);
+                    go.transform.Rotate(0, 180, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 0, 0, 0, 1, 0, 1 }))                     //t section
                 {
                     GameObject go = Instantiate(tSection);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 90, 0);
                 }
                 else if (Search2D(x, z, new int[] { 1, 0, 5, 0, 0, 1, 1, 0, 5 }))                     //t section left
                 {
                     GameObject go = Instantiate(tSection);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 180, 0);
+                    go.transform.Rotate(0, 90, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 0, 1, 1, 0, 0, 5, 0, 1 }))                     //t section right
                 {
                     GameObject go = Instantiate(tSection);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    go.transform.Rotate(0, -90, 0);
                 }
             }
     }
@@ -175,7 +175,7 @@ public class Maze : MonoBehaviour
             {
                 if (map[x, z] == 0)
                 {
-                    player.transform.position = new Vector3(x * scale, 0, z * scale);
+                    player.transform.position = new Vector3(x * scale, -2.75f, z * scale);
                     return;
                 }
             }
