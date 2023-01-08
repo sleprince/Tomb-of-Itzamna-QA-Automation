@@ -37,6 +37,9 @@ public class Maze : MonoBehaviour
     public GameObject corner;
     public GameObject tSection;
     public GameObject deadEnd;
+    public GameObject roomWall;
+    public GameObject roomFloor;
+    public GameObject roomCeiling;
 
     public GameObject player;
 
@@ -44,6 +47,7 @@ public class Maze : MonoBehaviour
     {
         InitialiseMap();
         GenerateCorridor();
+        AddRooms(3, 4, 6);
         DrawMap();
         PlacePlayerInMaze();
     }
@@ -68,6 +72,25 @@ public class Maze : MonoBehaviour
             }
     }
 
+    public virtual void AddRooms(int roomCount, int minSize, int maxSize)
+    {
+        for (int c = 0; c < roomCount; c++)
+        {
+            int startX = Random.Range(3, width - 3);
+            int startZ = Random.Range(3, depth - 3);
+            int roomWidth = Random.Range(minSize, maxSize);
+            int roomDepth = Random.Range(minSize, maxSize);
+
+            for (int x = startX; x < width - 3 && x < startX + roomWidth; x++)
+            {
+                for (int z = startZ; z < depth - 3 && z < startZ + roomDepth; z++)
+                {
+                    map[x, z] = 0;
+                }
+            }
+        }
+    }
+
     void DrawMap()
     {
         for (int z = 0; z < depth; z++)
@@ -84,24 +107,24 @@ public class Maze : MonoBehaviour
                 {
                     GameObject go = Instantiate(deadEnd);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 90, 0);
+                    go.transform.Rotate(0, 180, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 0, 5, 1, 5 }))                     //horizontal dead end |<-
                 {
                     GameObject go = Instantiate(deadEnd);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, -90, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 1, 5, 0, 5 }))                     //vertical dead end T
                 {
                     GameObject go = Instantiate(deadEnd);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    go.transform.Rotate(0, 90, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 0, 5, 1, 0, 1, 5, 1, 5 }))                     //vertical dead end downT
                 {
                     GameObject go = Instantiate(deadEnd);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 180, 0);
+                    go.transform.Rotate(0, -90, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 0, 5, 1, 0, 1, 5, 0, 5 }))                     //vertical straight piece
                 {
@@ -119,53 +142,116 @@ public class Maze : MonoBehaviour
                     GameObject go = Instantiate(crossroad);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
                 }
-                else if (Search2D(x, z, new int[] {5, 1, 5, 0, 0, 1, 1, 0, 5 }))                      //upper right corner
-                {
-                    GameObject go = Instantiate(corner);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                }
-                else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 0, 5, 0, 1 }))                     //upper left corner
-                {
-                    GameObject go = Instantiate(corner);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, -90, 0);
-                }
-                else if (Search2D(x, z, new int[] { 5, 0, 1, 1, 0, 0, 5, 1, 5 }))                     //lower left corner
+                else if (Search2D(x, z, new int[] {5, 1, 5, 0, 0, 1, 1, 0, 5 }))                      //upper left corner
                 {
                     GameObject go = Instantiate(corner);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
                     go.transform.Rotate(0, 180, 0);
                 }
-                else if (Search2D(x, z, new int[] { 1, 0, 5, 5, 0, 1, 5, 1, 5 }))                     //lower right corner
+                else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 0, 5, 0, 1 }))                     //upper right corner
                 {
                     GameObject go = Instantiate(corner);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
                     go.transform.Rotate(0, 90, 0);
+                }
+                else if (Search2D(x, z, new int[] { 5, 0, 1, 1, 0, 0, 5, 1, 5 }))                     //lower right corner
+                {
+                    GameObject go = Instantiate(corner);
+                    go.transform.position = new Vector3(x * scale, 0, z * scale);
+                }
+                else if (Search2D(x, z, new int[] { 1, 0, 5, 5, 0, 1, 5, 1, 5 }))                     //lower left corner
+                {
+                    GameObject go = Instantiate(corner);
+                    go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    go.transform.Rotate(0, -90, 0);
                 }
                 else if (Search2D(x, z, new int[] { 1, 0, 1, 0, 0, 0, 5, 1, 5 }))                     //upside t section
                 {
                     GameObject go = Instantiate(tSection);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 180, 0);
+                    go.transform.Rotate(0, -90, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 0, 0, 0, 1, 0, 1 }))                     //t section
                 {
                     GameObject go = Instantiate(tSection);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    go.transform.Rotate(0, 90, 0);
                 }
                 else if (Search2D(x, z, new int[] { 1, 0, 5, 0, 0, 1, 1, 0, 5 }))                     //t section left
                 {
                     GameObject go = Instantiate(tSection);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 90, 0);
+                    go.transform.Rotate(0, 180, 0);
                 }
                 else if (Search2D(x, z, new int[] { 5, 0, 1, 1, 0, 0, 5, 0, 1 }))                     //t section right
                 {
                     GameObject go = Instantiate(tSection);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, -90, 0);
+                }
+                else if (map[x,z] == 0 && (CountSquareNeighbours(x,z) > 1 && CountDiagonalNeighbours(x,z) >= 1 ||
+                                            CountSquareNeighbours(x,z) >= 1 && CountDiagonalNeighbours(x,z) > 1))
+                {
+                    GameObject floor = Instantiate(roomFloor);
+                    floor.transform.position = new Vector3(x * scale, -3f, z * scale);
+
+                    GameObject ceiling = Instantiate(roomCeiling);
+                    ceiling.transform.position = new Vector3(x * scale, 0, z * scale);
+
+                    LocateWalls(x, z);
+                    if (topWall)
+                    {
+                        GameObject wall1 = Instantiate(roomWall);
+                        wall1.transform.position = new Vector3(x * scale, 0, z * scale);
+                        wall1.transform.Rotate(0, 90, 0);
+                    }
+
+                    if (bottomWall)
+                    {
+                        GameObject wall2 = Instantiate(roomWall);
+                        wall2.transform.position = new Vector3(x * scale, 0, z * scale);
+                        wall2.transform.Rotate(0, -90, 0);
+                    }
+
+                    if (rightWall)
+                    {
+                        GameObject wall3 = Instantiate(roomWall);
+                        wall3.transform.position = new Vector3(x * scale, 0, z * scale);
+                        wall3.transform.Rotate(0, 180, 0);
+                    }
+
+                    if (leftWall)
+                    {
+                        GameObject wall4 = Instantiate(roomWall);
+                        wall4.transform.position = new Vector3(x * scale, 0, z * scale);
+                    }
+                }
+                else
+                {
+                    Vector3 pos = new Vector3(x * scale, 0, z * scale);
+                    GameObject roomTile = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    roomTile.transform.localScale = new Vector3(scale, scale, scale);
+                    roomTile.transform.position = pos;
                 }
             }
+    }
+
+    bool topWall;
+    bool bottomWall;
+    bool rightWall;
+    bool leftWall;
+
+    public void LocateWalls(int x, int z)
+    {
+        topWall = false;
+        bottomWall = false;
+        rightWall = false;
+        leftWall = false;
+
+        if (x <= 0 || x >= width - 1 || z <= 0 || z >= depth - 1) return;
+        if (map[x, z + 1] == 1) topWall = true;
+        if (map[x, z - 1] == 1) bottomWall = true;
+        if (map[x + 1, z] == 1) rightWall = true;
+        if (map[x - 1, z] == 1) leftWall = true;
     }
 
     public virtual void PlacePlayerInMaze()

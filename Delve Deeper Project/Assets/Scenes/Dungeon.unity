@@ -256,8 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c262aab1908307844844f4b2232430a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 30
-  depth: 30
+  width: 20
+  depth: 20
   scale: 6
   straight: {fileID: 670136403796867806, guid: 5ac2683975452b5498422c04ed19c821, type: 3}
   crossroad: {fileID: 2256598372582011124, guid: a1ef54220ecaa124f8271988c8ed1355,
@@ -266,6 +266,12 @@ MonoBehaviour:
   tSection: {fileID: 6206676995781312726, guid: a8bade7cec2ad7c4a95ce38cdfdfaedf,
     type: 3}
   deadEnd: {fileID: 989380604137819810, guid: f9ece7e4075769b4682fcc6d4ab1d08a, type: 3}
+  roomWall: {fileID: 4559183729613690974, guid: 67d579b68b80046458dce9fc0c0d56db,
+    type: 3}
+  roomFloor: {fileID: 3881197360688692076, guid: 2d06ad9e5949d9242be41dae79234767,
+    type: 3}
+  roomCeiling: {fileID: 1910655301315737238, guid: fac9e5d595824da41959773a20c72fe4,
+    type: 3}
   player: {fileID: 1933435882}
 --- !u!1 &410087039
 GameObject:
