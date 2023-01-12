@@ -6,6 +6,7 @@ public class Recursive : Maze
 {
     public override void GenerateCorridor()
     {
+        this.transform.position = Vector3.zero;
         Generate(5, 5);
     }
 
