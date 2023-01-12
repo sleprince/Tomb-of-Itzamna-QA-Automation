@@ -1,11 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Recursive : Maze
+public class RecursiveDungeon : Maze
 {
     public override void GenerateCorridor()
     {
+        this.transform.position = Vector3.zero;
         Generate(5, 5);
     }
 
@@ -21,5 +22,4 @@ public class Recursive : Maze
         Generate(x + directions[2].x, z + directions[2].z);
         Generate(x + directions[3].x, z + directions[3].z);
     }
-
 }

@@ -260,6 +260,9 @@ MonoBehaviour:
   depth: 20
   scale: 6
   level: 0
+  levelDistance: 0
+  xOffset: 0
+  zOffset: 0
   VerticalStraight:
     prefab: {fileID: 4517810644776414877, guid: 28d6270e6695b214f9254c39433c7f1f,
       type: 3}
@@ -546,6 +549,9 @@ MonoBehaviour:
   depth: 20
   scale: 6
   level: 1
+  levelDistance: 0
+  xOffset: 0
+  zOffset: 0
   VerticalStraight:
     prefab: {fileID: 4517810644776414877, guid: 28d6270e6695b214f9254c39433c7f1f,
       type: 3}
@@ -689,6 +695,9 @@ MonoBehaviour:
   depth: 20
   scale: 6
   level: 3
+  levelDistance: 0
+  xOffset: 0
+  zOffset: 0
   VerticalStraight:
     prefab: {fileID: 4517810644776414877, guid: 28d6270e6695b214f9254c39433c7f1f,
       type: 3}
@@ -827,8 +836,8 @@ MonoBehaviour:
   - {fileID: 1001838232}
   - {fileID: 1965939574}
   - {fileID: 1255308868}
-  width: 20
-  depth: 20
+  width: 15
+  depth: 15
   stairs: {fileID: 5467397029984825422, guid: ebfb7bf8656c84447964cdafd0e1e26c, type: 3}
 --- !u!4 &1309901387
 Transform:
@@ -884,6 +893,9 @@ MonoBehaviour:
   depth: 20
   scale: 6
   level: 2
+  levelDistance: 0
+  xOffset: 0
+  zOffset: 0
   VerticalStraight:
     prefab: {fileID: 4517810644776414877, guid: 28d6270e6695b214f9254c39433c7f1f,
       type: 3}
