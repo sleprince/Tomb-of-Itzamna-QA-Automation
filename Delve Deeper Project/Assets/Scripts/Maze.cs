@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 
 public class MapLocation
 {
@@ -33,18 +31,73 @@ public class Maze : MonoBehaviour
 
     public byte[,] map;
 
-    public GameObject straight;
-    public GameObject crossroad;
-    public GameObject corner;
-    public GameObject tSection;
-    public GameObject endPiece;
-    public GameObject roomWall;
-    public GameObject roomFloor;
-    public GameObject roomCeiling;
-    public GameObject pillar;
-    public GameObject door;
+    [System.Serializable]
+    public struct Module
+    {
+        public GameObject prefab;
+        public Vector3 rotation;
+    }
+
+    public Module VerticalStraight;
+    public Module HorizontalStraight;
+    public Module Crossroad;
+    public Module NortheastCorner;
+    public Module SoutheastCorner;
+    public Module NorthwestCorner;
+    public Module SouthwestCorner;
+    public Module TJunction;
+    public Module UpsideDownTJunction;
+    public Module EastTJunction;
+    public Module WestTJunction;
+    public Module DeadEnd;
+    public Module UpsideDownDeadEnd;
+    public Module EastDeadEnd;
+    public Module WestDeadEnd;
+
+    public Module NorthRoomWall;
+    public Module SouthRoomWall;
+    public Module EastRoomWall;
+    public Module WestRoomWall;
+    public Module RoomFloor;
+    public Module RoomCeiling;
+    public Module Pillar;
 
     public GameObject player;
+
+    public enum PieceType
+    {
+        Horizontal_Straight,
+        Vertical_Straight,
+        North_East_Corner,
+        South_East_Corner,
+        North_West_Corner,
+        South_West_Corner,
+        T_Junction,
+        UpsideDown_T_Junction,
+        East_T_Junction,
+        West_T_Junction,
+        DeadEnd,
+        UpsideDown_DeadEnd,
+        East_DeadEnd,
+        West_DeadEnd,
+        Wall,
+        Crossroad,
+        Room
+    }
+
+    public struct Pieces
+    {
+        public PieceType piece;
+        public GameObject model;
+
+        public Pieces(PieceType pt, GameObject m)
+        {
+            piece = pt;
+            model = m;
+        }
+    }
+
+    public Pieces[,] piecePlaces;
 
     void Start()
     {
@@ -58,6 +111,7 @@ public class Maze : MonoBehaviour
     void InitialiseMap()
     {
         map = new byte[width, depth];
+        piecePlaces = new Pieces[width, depth];
         for (int z = 0; z < depth; z++)
             for (int x = 0; x < width; x++)
             {
@@ -105,122 +159,174 @@ public class Maze : MonoBehaviour
                     GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     wall.transform.localScale = new Vector3(scale, scale, scale);
                     wall.transform.position = pos;*/
+
+                    piecePlaces[x, z].piece = PieceType.Wall;
+                    piecePlaces[x, z].model = null;
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 0, 0, 1, 5, 1, 5 }))                     //horizontal dead end ->|
                 {
-                    GameObject go = Instantiate(endPiece);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 180, 0);
+                    GameObject end = Instantiate(EastDeadEnd.prefab);
+                    end.transform.position = new Vector3(x * scale, 0, z * scale);
+                    end.transform.Rotate(EastDeadEnd.rotation);
+
+                    piecePlaces[x, z].piece = PieceType.East_DeadEnd;
+                    piecePlaces[x,z].model = end;
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 0, 5, 1, 5 }))                     //horizontal dead end |<-
                 {
-                    GameObject go = Instantiate(endPiece);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    GameObject end = Instantiate(WestDeadEnd.prefab);
+                    end.transform.position = new Vector3(x * scale, 0, z * scale);
+
+                    piecePlaces[x, z].piece = PieceType.West_DeadEnd;
+                    piecePlaces[x, z].model = end;
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 1, 5, 0, 5 }))                     //vertical dead end T
                 {
-                    GameObject go = Instantiate(endPiece);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 90, 0);
+                    GameObject end = Instantiate(DeadEnd.prefab);
+                    end.transform.position = new Vector3(x * scale, 0, z * scale);
+                    end.transform.Rotate(DeadEnd.rotation);
+
+                    piecePlaces[x, z].piece = PieceType.DeadEnd;
+                    piecePlaces[x, z].model = end;
                 }
                 else if (Search2D(x, z, new int[] { 5, 0, 5, 1, 0, 1, 5, 1, 5 }))                     //vertical dead end downT
                 {
-                    GameObject go = Instantiate(endPiece);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, -90, 0);
+                    GameObject end = Instantiate(UpsideDownDeadEnd.prefab);
+                    end.transform.position = new Vector3(x * scale, 0, z * scale);
+                    end.transform.Rotate(UpsideDownDeadEnd.rotation);
+
+                    piecePlaces[x, z].piece = PieceType.UpsideDown_DeadEnd;
+                    piecePlaces[x, z].model = end;
                 }
                 else if (Search2D(x, z, new int[] { 5, 0, 5, 1, 0, 1, 5, 0, 5 }))                     //vertical straight piece
                 {
                     Vector3 pos = new Vector3(x * scale, 0, z * scale);
-                    Instantiate(straight, pos, Quaternion.identity);
+                    GameObject go = Instantiate(VerticalStraight.prefab, pos, Quaternion.identity);
+                    go.transform.Rotate(VerticalStraight.rotation);
+
+                    piecePlaces[x, z].piece = PieceType.Vertical_Straight;
+                    piecePlaces[x, z].model = go;
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 0, 0, 0, 5, 1, 5 }))                     //horizontal straight piece
                 {
                     Vector3 pos = new Vector3(x * scale, 0, z * scale);
-                    GameObject go = Instantiate(straight, pos, Quaternion.identity);
-                    go.transform.Rotate(0, 90, 0);
+                    GameObject go = Instantiate(HorizontalStraight.prefab, pos, Quaternion.identity);
+
+                    piecePlaces[x, z].piece = PieceType.Horizontal_Straight;
+                    piecePlaces[x, z].model = go;
                 }
                 else if(Search2D(x,z, new int[] { 1, 0, 1, 0, 0, 0, 1, 0, 1 }))                       //crossroad
                 {
-                    GameObject go = Instantiate(crossroad);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    GameObject cross = Instantiate(Crossroad.prefab);
+                    cross.transform.position = new Vector3(x * scale, 0, z * scale);
+
+                    piecePlaces[x, z].piece = PieceType.Crossroad;
+                    piecePlaces[x, z].model = cross;
                 }
                 else if (Search2D(x, z, new int[] {5, 1, 5, 0, 0, 1, 1, 0, 5 }))                      //upper left corner
                 {
-                    GameObject go = Instantiate(corner);
+                    GameObject go = Instantiate(NorthwestCorner.prefab);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 180, 0);
+                    go.transform.Rotate(NorthwestCorner.rotation);
+
+                    piecePlaces[x, z].piece = PieceType.North_West_Corner;
+                    piecePlaces[x, z].model = go;
                 }
                 else if (Search2D(x, z, new int[] { 5, 1, 5, 1, 0, 0, 5, 0, 1 }))                     //upper right corner
                 {
-                    GameObject go = Instantiate(corner);
+                    GameObject go = Instantiate(NortheastCorner.prefab);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 90, 0);
+                    go.transform.Rotate(NortheastCorner.rotation);
+
+                    piecePlaces[x, z].piece = PieceType.North_East_Corner;
+                    piecePlaces[x, z].model = go;
                 }
                 else if (Search2D(x, z, new int[] { 5, 0, 1, 1, 0, 0, 5, 1, 5 }))                     //lower right corner
                 {
-                    GameObject go = Instantiate(corner);
+                    GameObject go = Instantiate(SoutheastCorner.prefab);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
+
+                    piecePlaces[x, z].piece = PieceType.South_East_Corner;
+                    piecePlaces[x, z].model = go;
                 }
                 else if (Search2D(x, z, new int[] { 1, 0, 5, 5, 0, 1, 5, 1, 5 }))                     //lower left corner
                 {
-                    GameObject go = Instantiate(corner);
+                    GameObject go = Instantiate(SouthwestCorner.prefab);
                     go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, -90, 0);
+                    go.transform.Rotate(SouthwestCorner.rotation);
+
+                    piecePlaces[x, z].piece = PieceType.South_West_Corner;
+                    piecePlaces[x, z].model = go;
                 }
-                else if (Search2D(x, z, new int[] { 1, 0, 1, 0, 0, 0, 5, 1, 5 }))                     //upside t section
+                else if (Search2D(x, z, new int[] { 1, 0, 1, 0, 0, 0, 5, 1, 5 }))                     //upside t junction
                 {
-                    GameObject go = Instantiate(tSection);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, -90, 0);
+                    GameObject junc = Instantiate(UpsideDownTJunction.prefab);
+                    junc.transform.position = new Vector3(x * scale, 0, z * scale);
+                    junc.transform.Rotate(UpsideDownTJunction.rotation);
+
+                    piecePlaces[x, z].piece = PieceType.UpsideDown_T_Junction;
+                    piecePlaces[x, z].model = junc;
                 }
-                else if (Search2D(x, z, new int[] { 5, 1, 5, 0, 0, 0, 1, 0, 1 }))                     //t section
+                else if (Search2D(x, z, new int[] { 5, 1, 5, 0, 0, 0, 1, 0, 1 }))                     //t junction
                 {
-                    GameObject go = Instantiate(tSection);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 90, 0);
+                    GameObject junc = Instantiate(TJunction.prefab);
+                    junc.transform.position = new Vector3(x * scale, 0, z * scale);
+                    junc.transform.Rotate(TJunction.rotation);
+
+                    piecePlaces[x, z].piece = PieceType.T_Junction;
+                    piecePlaces[x, z].model = junc;
                 }
-                else if (Search2D(x, z, new int[] { 1, 0, 5, 0, 0, 1, 1, 0, 5 }))                     //t section left
+                else if (Search2D(x, z, new int[] { 1, 0, 5, 0, 0, 1, 1, 0, 5 }))                     //t junction right
                 {
-                    GameObject go = Instantiate(tSection);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
-                    go.transform.Rotate(0, 180, 0);
+                    GameObject junc = Instantiate(EastTJunction.prefab);
+                    junc.transform.position = new Vector3(x * scale, 0, z * scale);
+                    junc.transform.Rotate(0, 180, 0);
+
+                    piecePlaces[x, z].piece = PieceType.East_T_Junction;
+                    piecePlaces[x, z].model = junc;
                 }
-                else if (Search2D(x, z, new int[] { 5, 0, 1, 1, 0, 0, 5, 0, 1 }))                     //t section right
+                else if (Search2D(x, z, new int[] { 5, 0, 1, 1, 0, 0, 5, 0, 1 }))                     //t junction left
                 {
-                    GameObject go = Instantiate(tSection);
-                    go.transform.position = new Vector3(x * scale, 0, z * scale);
+                    GameObject junc = Instantiate(WestTJunction.prefab);
+                    junc.transform.position = new Vector3(x * scale, 0, z * scale);
+
+                    piecePlaces[x, z].piece = PieceType.West_T_Junction;
+                    piecePlaces[x, z].model = junc;
                 }
                 else if (map[x,z] == 0 && (CountSquareNeighbours(x,z) > 1 && CountDiagonalNeighbours(x,z) >= 1 ||
                                             CountSquareNeighbours(x,z) >= 1 && CountDiagonalNeighbours(x,z) > 1))
                 {
-                    GameObject floor = Instantiate(roomFloor);
+                    GameObject floor = Instantiate(RoomFloor.prefab);
                     floor.transform.position = new Vector3(x * scale, 0, z * scale);
 
-                    GameObject ceiling = Instantiate(roomCeiling);
+                    GameObject ceiling = Instantiate(RoomCeiling.prefab);
                     ceiling.transform.position = new Vector3(x * scale, 0, z * scale);
+
+                    piecePlaces[x, z].piece = PieceType.Room;
+                    piecePlaces[x, z].model = floor;
 
                     GameObject cornerPillar;
                     LocateWalls(x, z);
                     if (north)
                     {
-                        GameObject wall1 = Instantiate(roomWall);
+                        GameObject wall1 = Instantiate(NorthRoomWall.prefab);
                         wall1.transform.position = new Vector3(x * scale, 0, z * scale);
-                        wall1.transform.Rotate(0, 90, 0);
                         wall1.name = "North Wall";
 
                         if (map[x + 1, z] == 0 && map[x + 1, z + 1] == 0 && !pillarLocations.Contains(new MapLocation(x,z)))
                         {
-                            cornerPillar = Instantiate(pillar);
-                            cornerPillar.transform.position = new Vector3((x + .5f) * scale, 0, (z + .5f) * scale);
+                            cornerPillar = Instantiate(Pillar.prefab);
+                            cornerPillar.transform.position = new Vector3(x * scale, 0, z * scale);
+                            cornerPillar.transform.localScale = new Vector3(1.01f, 1, 1.01f);
                             cornerPillar.name = "North Right";
                             pillarLocations.Add(new MapLocation(x, z));
                         }
 
                         if (map[x - 1, z] == 0 && map[x - 1, z + 1] == 0 && !pillarLocations.Contains(new MapLocation(x - 1, z)))
                         {
-                            cornerPillar = Instantiate(pillar);
-                            cornerPillar.transform.position = new Vector3((x - .5f) * scale, 0, (z + .5f) * scale);
+                            cornerPillar = Instantiate(Pillar.prefab);
+                            cornerPillar.transform.position = new Vector3((x - 1) * scale, 0, z * scale);
+                            cornerPillar.transform.localScale = new Vector3(1.01f, 1, 1.01f);
                             cornerPillar.name = "North Left";
                             pillarLocations.Add(new MapLocation(x - 1, z));
                         }
@@ -228,23 +334,25 @@ public class Maze : MonoBehaviour
 
                     if (south)
                     {
-                        GameObject wall2 = Instantiate(roomWall);
+                        GameObject wall2 = Instantiate(SouthRoomWall.prefab);
                         wall2.transform.position = new Vector3(x * scale, 0, z * scale);
-                        wall2.transform.Rotate(0, -90, 0);
+                        wall2.transform.Rotate(SouthRoomWall.rotation);
                         wall2.name = "South Wall";
 
                         if (map[x + 1, z] == 0 && map[x + 1, z - 1] == 0 && !pillarLocations.Contains(new MapLocation(x, z - 1)))
                         {
-                            cornerPillar = Instantiate(pillar);
-                            cornerPillar.transform.position = new Vector3((x + .5f) * scale, 0, (z - .5f) * scale);
+                            cornerPillar = Instantiate(Pillar.prefab);
+                            cornerPillar.transform.position = new Vector3(x * scale, 0, (z - 1) * scale);
+                            cornerPillar.transform.localScale = new Vector3(1.01f, 1, 1.01f);
                             cornerPillar.name = "South Right";
                             pillarLocations.Add(new MapLocation(x, z - 1));
                         }
 
                         if (map[x - 1, z - 1] == 0 && map[x - 1, z] == 0 && !pillarLocations.Contains(new MapLocation(x - 1, z - 1)))
                         {
-                            cornerPillar = Instantiate(pillar);
-                            cornerPillar.transform.position = new Vector3((x - .5f) * scale, 0, (z - .5f) * scale);
+                            cornerPillar = Instantiate(Pillar.prefab);
+                            cornerPillar.transform.position = new Vector3((x - 1) * scale, 0,  (z - 1) * scale);
+                            cornerPillar.transform.localScale = new Vector3(1.01f, 1, 1.01f);
                             cornerPillar.name = "South Left";
                             pillarLocations.Add(new MapLocation(x - 1, z - 1));
                         }
@@ -252,23 +360,25 @@ public class Maze : MonoBehaviour
 
                     if (east)
                     {
-                        GameObject wall3 = Instantiate(roomWall);
+                        GameObject wall3 = Instantiate(EastRoomWall.prefab);
                         wall3.transform.position = new Vector3(x * scale, 0, z * scale);
-                        wall3.transform.Rotate(0, 180, 0);
+                        wall3.transform.Rotate(EastRoomWall.rotation);
                         wall3.name = "East Wall";
 
                         if (map[x + 1, z + 1] == 0 && map[x, z + 1] == 0 && !pillarLocations.Contains(new MapLocation(x, z - 1)))
                         {
-                            cornerPillar = Instantiate(pillar);
-                            cornerPillar.transform.position = new Vector3((x + .5f) * scale, 0, (z + .5f) * scale);
+                            cornerPillar = Instantiate(Pillar.prefab);
+                            cornerPillar.transform.position = new Vector3(x * scale, 0, (z - 1) * scale);
+                            cornerPillar.transform.localScale = new Vector3(1.01f, 1, 1.01f);
                             cornerPillar.name = "East Top";
                             pillarLocations.Add(new MapLocation(x, z - 1));
                         }
 
                         if (map[x, z - 1] == 0 && map[x + 1, z - 1] == 0 && !pillarLocations.Contains(new MapLocation(x + 1, z - 1)))
                         {
-                            cornerPillar = Instantiate(pillar);
-                            cornerPillar.transform.position = new Vector3((x + .5f) * scale, 0, (z - .5f) * scale);
+                            cornerPillar = Instantiate(Pillar.prefab);
+                            cornerPillar.transform.position = new Vector3((x + 1) * scale, 0, (z - 1) * scale);
+                            cornerPillar.transform.localScale = new Vector3(1.01f, 1, 1.01f);
                             cornerPillar.name = "East Bottom";
                             pillarLocations.Add(new MapLocation(x + 1, z - 1));
                         }
@@ -276,59 +386,29 @@ public class Maze : MonoBehaviour
 
                     if (west)
                     {
-                        GameObject wall4 = Instantiate(roomWall);
+                        GameObject wall4 = Instantiate(WestRoomWall.prefab);
                         wall4.transform.position = new Vector3(x * scale, 0, z * scale);
+                        wall4.transform.Rotate(WestRoomWall.rotation);
                         wall4.name = "West Wall";
 
                         if (map[x - 1, z + 1] == 0 && map[x, z + 1] == 0 && !pillarLocations.Contains(new MapLocation(x - 1, z)))
                         {
-                            cornerPillar = Instantiate(pillar);
-                            cornerPillar.transform.position = new Vector3((x - .5f) * scale, 0, (z + .5f) * scale);
+                            cornerPillar = Instantiate(Pillar.prefab);
+                            cornerPillar.transform.position = new Vector3((x - 1) * scale, 0, z * scale);
+                            cornerPillar.transform.localScale = new Vector3(1.01f, 1, 1.01f);
                             cornerPillar.name = "West Top";
                             pillarLocations.Add(new MapLocation(x - 1, z));
                         }
 
                         if (map[x - 1, z - 1] == 0 && map[x, z - 1] == 0 && !pillarLocations.Contains(new MapLocation(x - 1, z - 1)))
                         {
-                            cornerPillar = Instantiate(pillar);
-                            cornerPillar.transform.position = new Vector3((x - .5f) * scale, 0, (z - .5f) * scale);
+                            cornerPillar = Instantiate(Pillar.prefab);
+                            cornerPillar.transform.position = new Vector3((x - 1) * scale, 0, (z - 1) * scale);
+                            cornerPillar.transform.localScale = new Vector3(1.01f, 1, 1.01f);
                             cornerPillar.name = "West Bottom";
                             pillarLocations.Add(new MapLocation(x - 1, z - 1));
                         }
-                    }
-
-                    /*GameObject doorway;
-                    LocateDoors(x, z);
-                    if (north)
-                    {
-                        doorway = Instantiate(door);
-                        doorway.transform.position = new Vector3(x * scale, 0, z * scale);
-                        doorway.transform.Rotate(0, 180, 0);
-                        doorway.name = "North Door";
-                    }
-
-                    if (south)
-                    {
-                        doorway = Instantiate(door);
-                        doorway.transform.position = new Vector3(x * scale, 0, z * scale);
-                        doorway.name = "South Door";
-                    }
-
-                    if (east)
-                    {
-                        doorway = Instantiate(door);
-                        doorway.transform.position = new Vector3(x * scale, 0, z * scale);
-                        doorway.transform.Rotate(0, 90, 0);
-                        doorway.name = "East Door";
-                    }
-
-                    if (west)
-                    {
-                        doorway = Instantiate(door);
-                        doorway.transform.position = new Vector3(x * scale, 0, z * scale);
-                        doorway.transform.Rotate(0, -90, 0);
-                        doorway.name = "West Door";
-                    }*/
+                    }                    
                 }
             }
     }
@@ -350,20 +430,6 @@ public class Maze : MonoBehaviour
         if (map[x, z - 1] == 1) south = true;
         if (map[x + 1, z] == 1) east = true;
         if (map[x - 1, z] == 1) west = true;
-    }
-
-    public void LocateDoors(int x, int z)
-    {
-        north = false;
-        south = false;
-        east = false;
-        west = false;
-
-        if (x <= 0 || x >= width - 1 || z <= 0 || z >= depth - 1) return;
-        if (map[x, z + 1] == 0 && map[x - 1, z + 1] == 1 && map[x + 1, z + 1] == 1) north = true;
-        if (map[x, z - 1] == 0 && map[x - 1, z - 1] == 1 && map[x + 1, z - 1] == 1) south = true;
-        if (map[x + 1, z] == 0 && map[x + 1, z + 1] == 1 && map[x + 1, z - 1] == 1) east = true;
-        if (map[x - 1, z] == 0 && map[x - 1, z + 1] == 1 && map[x - 1, z - 1] == 1) west = true;
     }
 
     public virtual void PlacePlayerInMaze()
