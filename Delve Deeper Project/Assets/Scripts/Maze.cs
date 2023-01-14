@@ -11,6 +11,30 @@ public class MapLocation
         x = _x;
         z = _z;
     }
+    public Vector2 ToVector()
+    {
+        return new Vector2(x, z);
+    }
+
+    public static MapLocation operator +(MapLocation a, MapLocation b)
+       => new MapLocation(a.x + b.x, a.z + b.z);
+
+    public override bool Equals(object obj)
+    {
+        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+        {
+            return false;
+        }
+        else
+        {
+            return x == ((MapLocation)obj).x && z == ((MapLocation)obj).z;
+        }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 public class Maze : MonoBehaviour
@@ -110,13 +134,116 @@ public class Maze : MonoBehaviour
         InitialiseMap();
         GenerateCorridor();
         AddRooms(3, 4, 6);
+
+        byte[,] oldmap = map;
+        int oldWidth = width;
+        int oldDepth = depth;
+
+        width += 6;
+        depth += 6;
+
+        map = new byte[width, depth];
+        InitialiseMap();
+
+        for (int z = 0; z < oldDepth; z++)
+            for(int x = 0; x < oldWidth; x++)
+            {
+                map[x + 3, z + 3] = oldmap[x, z];
+            }
+        int xPos;
+        int zPos;
+
+        FindPathAStar aStar = GetComponent<FindPathAStar>();
+        if (aStar != null)
+        {
+            aStar.Build();
+            if (aStar.startNode.location.x < aStar.endNode.location.x)
+            {
+                xPos = aStar.startNode.location.x;
+                zPos = aStar.startNode.location.z;
+
+                while (xPos > 1)
+                {
+                    map[xPos, zPos] = 0;
+                    xPos--;
+                }
+
+                xPos = aStar.endNode.location.x;
+                zPos = aStar.endNode.location.z;
+
+                while (xPos < width - 2)
+                {
+                    map[xPos, zPos] = 0;
+                    xPos++;
+                }
+            }
+            else
+            {
+                xPos = aStar.startNode.location.x;
+                zPos = aStar.startNode.location.z;
+
+                while (xPos < width - 2)
+                {
+                    map[xPos, zPos] = 0;
+                    xPos++;
+                }
+
+                xPos = aStar.endNode.location.x;
+                zPos = aStar.endNode.location.z;
+
+                while (xPos > 1)
+                {
+                    map[xPos, zPos] = 0;
+                    xPos--;
+                }
+            }
+        }
+        else
+        {
+            xPos = Random.Range(5, width - 5);
+            zPos = depth - 2;
+
+            while (map[xPos, zPos] != 0 && zPos > 1)
+            {
+                map[xPos, zPos] = 0;
+                zPos--;
+            }
+
+            xPos = Random.Range(5, width - 5);
+            zPos = 1;
+
+            while (map[xPos, zPos] != 0 && zPos < depth - 2)
+            {
+                map[xPos, zPos] = 0;
+                zPos++;
+            }
+
+            zPos = Random.Range(5, depth - 5);
+            xPos = width - 2;
+
+            while (map[xPos, zPos] != 0 && xPos > 1)
+            {
+                map[xPos, zPos] = 0;
+                xPos--;
+            }
+
+            zPos = Random.Range(5, depth - 5);
+            xPos = 1;
+
+            while (map[xPos, zPos] != 0 && xPos < width - 2)
+            {
+                map[xPos, zPos] = 0;
+                xPos++;
+            }
+        }
+
         DrawMap();
         
         if (player != null)
             PlacePlayerInMaze();
     }
 
-    void InitialiseMap()
+    public void InitialiseMap()
     {
         map = new byte[width, depth];
         piecePlaces = new Pieces[width, depth];

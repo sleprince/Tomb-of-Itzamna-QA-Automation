@@ -526,6 +526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1001838233}
   - component: {fileID: 1001838232}
+  - component: {fileID: 1001838234}
   m_Layer: 0
   m_Name: Dungeon (1)
   m_TagString: Untagged
@@ -656,6 +657,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1001838234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001838231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addc6e1a06900c74ca5d2696f6783db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maze: {fileID: 1001838232}
 --- !u!4 &1183421084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8158979060369899846, guid: b3cf30d41d155044b972921472d93141,
@@ -838,7 +852,8 @@ MonoBehaviour:
   - {fileID: 1255308868}
   width: 15
   depth: 15
-  stairs: {fileID: 5467397029984825422, guid: ebfb7bf8656c84447964cdafd0e1e26c, type: 3}
+  stairwell: {fileID: 5467397029984825422, guid: ebfb7bf8656c84447964cdafd0e1e26c,
+    type: 3}
 --- !u!4 &1309901387
 Transform:
   m_ObjectHideFlags: 0
@@ -870,6 +885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965939575}
   - component: {fileID: 1965939574}
+  - component: {fileID: 1965939576}
   m_Layer: 0
   m_Name: Dungeon (2)
   m_TagString: Untagged
@@ -1000,6 +1016,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1965939576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965939573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addc6e1a06900c74ca5d2696f6783db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maze: {fileID: 1965939574}
 --- !u!1001 &571288623620600148
 PrefabInstance:
   m_ObjectHideFlags: 0
