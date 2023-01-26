@@ -48,12 +48,10 @@ public class Maze : MonoBehaviour
     };
     public List<MapLocation> pillarLocations = new List<MapLocation>();
 
-    //values to determine the X and Z lengths of maze
-    public int width = 30;
-    public int depth = 30;
+    public int width = 30;      //x length
+    public int depth = 30;      //z length
     public int scale = 6;
     public int level = 0;
-
     public float levelDistance = 2.0f;
     public float xOffset = 0;
     public float zOffset = 0;
@@ -128,12 +126,13 @@ public class Maze : MonoBehaviour
     }
 
     public Pieces[,] piecePlaces;
+    public List<MapLocation> locations = new List<MapLocation>();
 
     public void Build()
     {
         InitialiseMap();
         GenerateCorridor();
-        AddRooms(3, 4, 6);
+        AddRooms(1, 4, 6);
 
         byte[,] oldmap = map;
         int oldWidth = width;
@@ -146,94 +145,102 @@ public class Maze : MonoBehaviour
         InitialiseMap();
 
         for (int z = 0; z < oldDepth; z++)
-            for(int x = 0; x < oldWidth; x++)
+            for (int x = 0; x < oldWidth; x++)
             {
                 map[x + 3, z + 3] = oldmap[x, z];
             }
-        int xPos;
-        int zPos;
 
-        FindPathAStar aStar = GetComponent<FindPathAStar>();
-        if (aStar != null)
+        int xpos;
+        int zpos;
+
+
+        FindPathAStar astar = GetComponent<FindPathAStar>();
+        if (astar != null)
         {
-            aStar.Build();
-            if (aStar.startNode.location.x < aStar.endNode.location.x)
+            astar.Build();
+            if (astar.startNode.location.x < astar.endNode.location.x) //start is left
             {
-                xPos = aStar.startNode.location.x;
-                zPos = aStar.startNode.location.z;
+                xpos = astar.startNode.location.x;
+                zpos = astar.startNode.location.z;
 
-                while (xPos > 1)
+                while (xpos > 1)
                 {
-                    map[xPos, zPos] = 0;
-                    xPos--;
+                    map[xpos, zpos] = 0;
+                    xpos--;
                 }
 
-                xPos = aStar.endNode.location.x;
-                zPos = aStar.endNode.location.z;
+                xpos = astar.endNode.location.x;
+                zpos = astar.endNode.location.z;
 
-                while (xPos < width - 2)
+                while (xpos < width - 2)
                 {
-                    map[xPos, zPos] = 0;
-                    xPos++;
+                    map[xpos, zpos] = 0;
+                    xpos++;
                 }
             }
             else
             {
-                xPos = aStar.startNode.location.x;
-                zPos = aStar.startNode.location.z;
+                xpos = astar.startNode.location.x;
+                zpos = astar.startNode.location.z;
 
-                while (xPos < width - 2)
+                while (xpos < width - 2)
                 {
-                    map[xPos, zPos] = 0;
-                    xPos++;
+                    map[xpos, zpos] = 0;
+                    xpos++;
                 }
 
-                xPos = aStar.endNode.location.x;
-                zPos = aStar.endNode.location.z;
+                xpos = astar.endNode.location.x;
+                zpos = astar.endNode.location.z;
 
-                while (xPos > 1)
+                while (xpos > 1)
                 {
-                    map[xPos, zPos] = 0;
-                    xPos--;
+                    map[xpos, zpos] = 0;
+                    xpos--;
                 }
+
             }
+
         }
         else
         {
-            xPos = Random.Range(5, width - 5);
-            zPos = depth - 2;
+            //upper vertical corridor
+            xpos = Random.Range(5, width - 5);
+            zpos = depth - 2;
 
-            while (map[xPos, zPos] != 0 && zPos > 1)
+            while (map[xpos, zpos] != 0 && zpos > 1)
             {
-                map[xPos, zPos] = 0;
-                zPos--;
+                map[xpos, zpos] = 0;
+                zpos--;
             }
 
-            xPos = Random.Range(5, width - 5);
-            zPos = 1;
+            //lower vertical corridor
+            xpos = Random.Range(5, width - 5);
+            zpos = 1;
 
-            while (map[xPos, zPos] != 0 && zPos < depth - 2)
+            while (map[xpos, zpos] != 0 && zpos < depth - 2)
             {
-                map[xPos, zPos] = 0;
-                zPos++;
+                map[xpos, zpos] = 0;
+                zpos++;
             }
 
-            zPos = Random.Range(5, depth - 5);
-            xPos = width - 2;
+            //right horizontal corridor
+            zpos = Random.Range(5, depth - 5);
+            xpos = width - 2;
 
-            while (map[xPos, zPos] != 0 && xPos > 1)
+            while (map[xpos, zpos] != 0 && xpos > 1)
             {
-                map[xPos, zPos] = 0;
-                xPos--;
+                map[xpos, zpos] = 0;
+                xpos--;
             }
 
-            zPos = Random.Range(5, depth - 5);
-            xPos = 1;
+            //left horizontal corridor
+            zpos = Random.Range(5, depth - 5);
+            xpos = 1;
 
-            while (map[xPos, zPos] != 0 && xPos < width - 2)
+            while (map[xpos, zpos] != 0 && xpos < width - 2)
             {
-                map[xPos, zPos] = 0;
-                xPos++;
+                map[xpos, zpos] = 0;
+                xpos++;
             }
         }
 
@@ -241,6 +248,10 @@ public class Maze : MonoBehaviour
         
         if (player != null)
             PlacePlayerInMaze();
+
+        PlaceObject placeObject = GetComponent<PlaceObject>();
+        if (placeObject != null)
+            placeObject.Go();
     }
 
     public void InitialiseMap()
@@ -266,21 +277,7 @@ public class Maze : MonoBehaviour
 
     public virtual void AddRooms(int roomCount, int minSize, int maxSize)
     {
-        for (int c = 0; c < roomCount; c++)
-        {
-            int startX = Random.Range(3, width - 3);
-            int startZ = Random.Range(3, depth - 3);
-            int roomWidth = Random.Range(minSize, maxSize);
-            int roomDepth = Random.Range(minSize, maxSize);
-
-            for (int x = startX; x < width - 3 && x < startX + roomWidth; x++)
-            {
-                for (int z = startZ; z < depth - 3 && z < startZ + roomDepth; z++)
-                {
-                    map[x, z] = 0;
-                }
-            }
-        }
+       
     }
 
     void DrawMap()

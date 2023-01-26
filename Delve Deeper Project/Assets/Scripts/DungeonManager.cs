@@ -32,7 +32,7 @@ public class DungeonManager : MonoBehaviour
             PlaceStairs(mazeIndex, -90, Maze.PieceType.UpsideDown_DeadEnd, Maze.PieceType.DeadEnd, stairwell);
         }
 
-        for (int mazeIndex = 0; mazeIndex < mazes.Length; mazeIndex++)
+        for (int mazeIndex = 0; mazeIndex < mazes.Length - 1; mazeIndex++)
         {
             mazes[mazeIndex + 1].gameObject.transform.Translate(mazes[mazeIndex + 1].xOffset * mazes[mazeIndex + 1].scale,
                 0, mazes[mazeIndex + 1].zOffset * mazes[mazeIndex + 1].scale);
@@ -75,7 +75,7 @@ public class DungeonManager : MonoBehaviour
         mazes[mazeIndex].piecePlaces[bottomOfStairs.x, bottomOfStairs.z].piece = Maze.PieceType.Stairs;
         mazes[mazeIndex].piecePlaces[bottomOfStairs.x, bottomOfStairs.z].model = stairs;
 
-        mazes[mazeIndex + 1].piecePlaces[topOfStairs.x, topOfStairs.z].piece = Maze.PieceType.Stairs;
+        //mazes[mazeIndex + 1].piecePlaces[topOfStairs.x, topOfStairs.z].piece = Maze.PieceType.Stairs;
         mazes[mazeIndex + 1].piecePlaces[topOfStairs.x, topOfStairs.z].model = null;
 
         stairs.transform.SetParent(mazes[mazeIndex].gameObject.transform);

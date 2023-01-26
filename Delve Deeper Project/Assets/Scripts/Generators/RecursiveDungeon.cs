@@ -10,6 +10,25 @@ public class RecursiveDungeon : Maze
         Generate(5, 5);
     }
 
+    public override void AddRooms(int roomCount, int minSize, int maxSize)
+    {
+        for (int c = 0; c < roomCount; c++)
+        {
+            int startX = Random.Range(2, width - 3);
+            int startZ = Random.Range(2, depth - 3);
+            int roomWidth = Random.Range(minSize, maxSize);
+            int roomDepth = Random.Range(minSize, maxSize);
+
+            for (int x = startX; x < width - 3 && x < startX + roomWidth; x++)
+            {
+                for (int z = startZ; z < depth - 3 && z < startZ + roomDepth; z++)
+                {
+                    map[x, z] = 0;
+                }
+            }
+        }
+    }
+
     void Generate(int x, int z)
     {
         if (CountSquareNeighbours(x, z) >= 2) return;
