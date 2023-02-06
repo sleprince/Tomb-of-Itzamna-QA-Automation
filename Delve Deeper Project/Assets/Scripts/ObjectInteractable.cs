@@ -4,6 +4,8 @@ public class ObjectInteractable : MonoBehaviour, IInteractable
 {
     public void CollectObject()
     {
+        Item item = GetComponent<Item>();
+        item.itemCollected.Raise(this.gameObject);
         Destroy(gameObject);
     }
 
