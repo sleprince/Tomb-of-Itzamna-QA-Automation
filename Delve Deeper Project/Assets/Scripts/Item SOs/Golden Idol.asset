@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce65ec9b9384514e829442b54ff3163, type: 3}
   m_Name: Golden Idol
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: bca05315c0c63dd4cbac02bfd6e37087, type: 3}
   itemName: Golden Idol
-  description: Thsi is the golden idol
+  description: This is the golden idol

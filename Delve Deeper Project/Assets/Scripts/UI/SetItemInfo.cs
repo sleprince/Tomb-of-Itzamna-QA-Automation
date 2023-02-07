@@ -1,21 +1,20 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SetItemInfo : MonoBehaviour
 {
-    public GameObject bookUiPanel;
+    public GameObject journalUIPanel;
     public GameObject itemIcon;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDesc;
 
-    public void OpenBook()
+    public void OpenJournal()
     {
-        bookUiPanel.SetActive(true);
+        journalUIPanel.SetActive(true);
     }
 
-    public void CloseBook()
+    public void CloseJournal()
     {
-        bookUiPanel.SetActive(false);
+        journalUIPanel.SetActive(false);
     }
 }

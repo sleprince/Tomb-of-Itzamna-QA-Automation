@@ -6,6 +6,7 @@ public class ObjectInteractable : MonoBehaviour, IInteractable
     {
         Item item = GetComponent<Item>();
         item.itemCollected.Raise(this.gameObject);
+        item.SetInfo();
         Destroy(gameObject);
     }
 
