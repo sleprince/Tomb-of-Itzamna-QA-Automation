@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/PressurePlatePuzzle.unity
     guid: e0a5ee2b3965aa74d871d85f7f4d9928
   - enabled: 1
-    path: Assets/Scenes/BrazierPuzzle.unity
-    guid: 1201ec397b71e4e45b4cf92df64e9c02
+    path: Assets/Scenes/TrapDoorPuzzle.unity
+    guid: 9137f0d30b73e3b49b19c5292e007c9a
   m_configObjects: {}
