@@ -1,0 +1,175 @@
+using StarterAssets;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RingsPuzzle : MonoBehaviour
+{
+    [SerializeField] Transform outerPillars;
+    [SerializeField] Transform middlePillars;
+    [SerializeField] Transform innerPillars;
+    [SerializeField] Transform centralPillar;
+
+    [SerializeField] float correctRotOuter = 120f;
+    [SerializeField] float correctRotMiddle = 240f;
+    [SerializeField] float correctRotInner = 75f;
+    [SerializeField] float correctThreshold = 5f;
+
+    [SerializeField] float pushSpeed = 10f;
+
+    public static bool RingsPuzzleCompleted = false;
+
+    //[SerializeField] GameEvent allRingsAligned;
+
+    PuzzleTrigger[] triggers;
+
+    CharacterController playerController;
+    ThirdPersonController player;
+
+    bool OuterAligned = false;
+    bool MiddleAligned = false;
+    bool InnerAligned = false;
+
+    Vector3 outerStartVictory;
+    Vector3 middleStartVictory;
+    Vector3 innerStartVictory;
+    Vector3 outerEndVictory = new Vector3(0f, 0f, 0f);
+    Vector3 middleEndVictory = new Vector3(0f, 0f, 0f);
+    Vector3 innerEndVictory = new Vector3(0f, 0f, 0f);
+
+    bool DisplayedVictory = false;
+    bool VictoryLerpComplete = false;
+
+    float victoryStartTime;
+    float victoryDuration = 2f;
+
+    float centralPillarStartHeight = -1.5f;
+    float centralPillarVictoryHeight = 0.5f;
+
+    List<GameObject> innerPillarFires = new();
+    List<GameObject> middlePillarFires = new();
+    List<GameObject> outerPillarFires = new();
+
+    private void Awake()
+    {
+        triggers = GetComponentsInChildren<PuzzleTrigger>();
+        playerController = FindObjectOfType<CharacterController>();
+        player = FindObjectOfType<ThirdPersonController>();
+
+        outerPillars.eulerAngles = new Vector3(0f, Random.Range(-180f, 180f), 0f);
+        middlePillars.eulerAngles = new Vector3(0f, Random.Range(-180f, 180f), 0f);
+        innerPillars.eulerAngles = new Vector3(0f, Random.Range(-180f, 180f), 0f);
+
+        foreach (Transform pillar in innerPillars)
+        {
+            innerPillarFires.Add(pillar.gameObject.GetComponentInChildren<BrazierInteractable>().m_fire);
+        }
+
+        foreach (Transform pillar in middlePillars)
+        {
+            middlePillarFires.Add(pillar.gameObject.GetComponentInChildren<BrazierInteractable>().m_fire);
+        }
+
+        foreach (Transform pillar in outerPillars)
+        {
+            outerPillarFires.Add(pillar.gameObject.GetComponentInChildren<BrazierInteractable>().m_fire);
+        }
+
+        centralPillar.position = new Vector3(centralPillar.position.x, centralPillarStartHeight, centralPillar.position.z);
+    }
+
+    private void Update()
+    {
+        if (!RingsPuzzleCompleted)
+        {
+            RingsPuzzleCompleted = CheckPuzzleCompleted();
+        }
+
+        if (RingsPuzzleCompleted && !DisplayedVictory)
+        {
+            DisplayVictory();
+        }
+
+        if (DisplayedVictory && !VictoryLerpComplete)
+        {
+            //player.HandlePushing(false);
+            PerformVictoryLerp();
+        }
+    }
+
+    bool CheckPuzzleCompleted()
+    {
+        OuterAligned = CheckAlignment(outerPillars, outerPillarFires, correctRotOuter);
+        MiddleAligned = CheckAlignment(middlePillars, middlePillarFires, correctRotMiddle);
+        InnerAligned = CheckAlignment(innerPillars, innerPillarFires, correctRotInner);
+
+        if (OuterAligned && MiddleAligned && InnerAligned)
+        {
+            Debug.Log("All Aligned!");
+
+            return true;
+        }
+
+        return false;
+    }
+
+    bool CheckAlignment(Transform pillarGroup, List<GameObject> pillarFire, float correctRot)
+    {
+        if (Mathf.Abs(pillarGroup.localEulerAngles.y) < correctThreshold)
+        {
+            foreach (GameObject fire in pillarFire)
+            {
+                fire.SetActive(true);
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void DisplayVictory()
+    {
+        victoryStartTime = Time.time;
+        outerStartVictory = outerPillars.localEulerAngles;
+        middleStartVictory = middlePillars.localEulerAngles;
+        innerStartVictory = innerPillars.localEulerAngles;
+
+        for (int i = 0; i < triggers.Length; i++)
+        {
+            triggers[i].enabled = false;
+        }
+    }
+
+    void PerformVictoryLerp()
+    {
+        float lerpVal = (Time.time - victoryStartTime) / victoryDuration;
+
+        if (lerpVal >= 1f)
+        {
+            lerpVal = 1f;
+            VictoryLerpComplete = true;
+        }
+
+        outerPillars.localEulerAngles = Vector3.Lerp(outerStartVictory, outerEndVictory, lerpVal);
+        middlePillars.localEulerAngles = Vector3.Lerp(middleStartVictory, middleEndVictory, lerpVal);
+        innerPillars.localEulerAngles = Vector3.Lerp(innerStartVictory, innerEndVictory, lerpVal);
+
+        float centralHeight = Mathf.Lerp(centralPillarStartHeight, centralPillarVictoryHeight, lerpVal);
+        centralPillar.position = new Vector3(centralPillar.position.x, centralHeight, centralPillar.position.z);
+    }
+
+    public void RotatePillar(PuzzleTrigger trigger)
+    {
+        float rot = (trigger.direction == PuzzleTriggerDirection.Clockwise ? pushSpeed : -pushSpeed) * Time.deltaTime;
+        trigger.transform.parent.parent.Rotate(Vector3.up * rot);
+
+        playerController.enabled = false;
+        float origY = playerController.transform.position.y;
+        playerController.transform.position = new Vector3(trigger.transform.position.x, origY, trigger.transform.position.z);
+        playerController.transform.forward = trigger.transform.forward;
+        playerController.enabled = true;
+    }
+}
