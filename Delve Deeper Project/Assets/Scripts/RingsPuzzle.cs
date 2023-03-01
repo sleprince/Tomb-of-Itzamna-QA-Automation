@@ -50,6 +50,10 @@ public class RingsPuzzle : MonoBehaviour
     List<GameObject> middlePillarFires = new();
     List<GameObject> outerPillarFires = new();
 
+    List<ParticleSystem> innerPillarParticles = new();
+    List<ParticleSystem> middlePillarParticles = new();
+    List<ParticleSystem> outerPillarParticles = new();
+
     private void Awake()
     {
         triggers = GetComponentsInChildren<PuzzleTrigger>();
@@ -63,16 +67,19 @@ public class RingsPuzzle : MonoBehaviour
         foreach (Transform pillar in innerPillars)
         {
             innerPillarFires.Add(pillar.gameObject.GetComponentInChildren<BrazierInteractable>().m_fire);
+            innerPillarParticles.Add(pillar.gameObject.GetComponentInChildren<BrazierInteractable>().m_particles);
         }
 
         foreach (Transform pillar in middlePillars)
         {
             middlePillarFires.Add(pillar.gameObject.GetComponentInChildren<BrazierInteractable>().m_fire);
+            middlePillarParticles.Add(pillar.gameObject.GetComponentInChildren<BrazierInteractable>().m_particles);
         }
 
         foreach (Transform pillar in outerPillars)
         {
             outerPillarFires.Add(pillar.gameObject.GetComponentInChildren<BrazierInteractable>().m_fire);
+            outerPillarParticles.Add(pillar.gameObject.GetComponentInChildren<BrazierInteractable>().m_particles);
         }
 
         centralPillar.position = new Vector3(centralPillar.position.x, centralPillarStartHeight, centralPillar.position.z);
@@ -99,9 +106,9 @@ public class RingsPuzzle : MonoBehaviour
 
     bool CheckPuzzleCompleted()
     {
-        OuterAligned = CheckAlignment(outerPillars, outerPillarFires, correctRotOuter);
-        MiddleAligned = CheckAlignment(middlePillars, middlePillarFires, correctRotMiddle);
-        InnerAligned = CheckAlignment(innerPillars, innerPillarFires, correctRotInner);
+        OuterAligned = CheckAlignment(outerPillars, outerPillarFires, outerPillarParticles, correctRotOuter);
+        MiddleAligned = CheckAlignment(middlePillars, middlePillarFires, middlePillarParticles, correctRotMiddle);
+        InnerAligned = CheckAlignment(innerPillars, innerPillarFires, innerPillarParticles, correctRotInner);
 
         if (OuterAligned && MiddleAligned && InnerAligned)
         {
@@ -113,13 +120,18 @@ public class RingsPuzzle : MonoBehaviour
         return false;
     }
 
-    bool CheckAlignment(Transform pillarGroup, List<GameObject> pillarFire, float correctRot)
+    bool CheckAlignment(Transform pillarGroup, List<GameObject> pillarFire, List<ParticleSystem> pillarPS, float correctRot)
     {
         if (Mathf.Abs(pillarGroup.localEulerAngles.y) < correctThreshold)
         {
             foreach (GameObject fire in pillarFire)
             {
                 fire.SetActive(true);
+            }
+
+            foreach (ParticleSystem ps in pillarPS)
+            {
+                ps.Play();
             }
 
             return true;
