@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 1232720613}
   - component: {fileID: 1232720612}
   m_Layer: 0
-  m_Name: TrapDoorPuzzle
+  m_Name: RingsPuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

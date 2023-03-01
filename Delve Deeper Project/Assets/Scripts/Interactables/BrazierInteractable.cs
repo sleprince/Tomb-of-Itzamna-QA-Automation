@@ -3,7 +3,7 @@ using UnityEngine;
 public class BrazierInteractable : MonoBehaviour, IInteractable
 {
     public GameObject m_fire;
-    [SerializeField] private ParticleSystem m_particles;
+    public ParticleSystem m_particles;
 
     [SerializeField] private bool aMultiBrazier = false;
 
