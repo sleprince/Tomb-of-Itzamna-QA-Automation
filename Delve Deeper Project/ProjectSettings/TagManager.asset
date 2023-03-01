@@ -6,11 +6,12 @@ TagManager:
   tags:
   - CinemachineTarget
   - JournalUI
+  - InteractionHighlight
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Moveable

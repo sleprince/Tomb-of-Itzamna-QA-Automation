@@ -97,8 +97,10 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5e9d9adbd972bae4ea0f332b012acfbe,
+    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 311a20ac615ff4c44ae775fd07cbb4f4,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3899,11 +3901,11 @@ Transform:
   - {fileID: 1108355794}
   - {fileID: 1058196102}
   - {fileID: 139229166}
-  - {fileID: 942681924}
+  - {fileID: 1447291289}
   - {fileID: 608198651}
   - {fileID: 260370089}
   - {fileID: 687678508}
-  - {fileID: 1447291289}
+  - {fileID: 942681924}
   - {fileID: 777041918}
   - {fileID: 1648571307}
   - {fileID: 562609790}
@@ -6445,6 +6447,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2004373064}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2006400453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2006400454}
+  m_Layer: 0
+  m_Name: Lighting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2006400454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006400453}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2031180761}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2016205075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6625,6 +6659,144 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2025710082}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2031180760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031180761}
+  - component: {fileID: 2031180762}
+  m_Layer: 0
+  m_Name: Light Probe Group
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2031180761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031180760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2006400454}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!220 &2031180762
+LightProbeGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031180760}
+  m_Enabled: 1
+  m_SourcePositions:
+  - {x: 21, y: 3, z: -3}
+  - {x: 21, y: 3, z: -9.000003}
+  - {x: 21, y: 0, z: -3}
+  - {x: 21, y: 0, z: -9.000003}
+  - {x: 15, y: 3, z: -3}
+  - {x: 15, y: 3, z: -9.000003}
+  - {x: 15, y: 0, z: -3}
+  - {x: 15, y: 0, z: -9.000003}
+  - {x: 21, y: 3, z: 3}
+  - {x: 21, y: 3, z: -3}
+  - {x: 21, y: 0, z: 3}
+  - {x: 21, y: 0, z: -3}
+  - {x: 15, y: 3, z: 3}
+  - {x: 15, y: 3, z: -3}
+  - {x: 15, y: 0, z: 3}
+  - {x: 15, y: 0, z: -3}
+  - {x: 21, y: 3, z: 9}
+  - {x: 21, y: 3, z: 3}
+  - {x: 21, y: 0, z: 9}
+  - {x: 21, y: 0, z: 3}
+  - {x: 15, y: 3, z: 9}
+  - {x: 15, y: 3, z: 3}
+  - {x: 15, y: 0, z: 9}
+  - {x: 15, y: 0, z: 3}
+  - {x: 3, y: 3, z: -3}
+  - {x: 3, y: 3, z: -9.000003}
+  - {x: 3, y: 0, z: -3}
+  - {x: 3, y: 0, z: -9.000003}
+  - {x: -3, y: 3, z: -3}
+  - {x: -3, y: 3, z: -9.000003}
+  - {x: -3, y: 0, z: -3}
+  - {x: -3, y: 0, z: -9.000003}
+  - {x: 3, y: 3, z: 3}
+  - {x: 3, y: 3, z: -3}
+  - {x: 3, y: 0, z: 3}
+  - {x: 3, y: 0, z: -3}
+  - {x: -3, y: 3, z: 3}
+  - {x: -3, y: 3, z: -3}
+  - {x: -3, y: 0, z: 3}
+  - {x: -3, y: 0, z: -3}
+  - {x: 3, y: 3, z: 9}
+  - {x: 3, y: 3, z: 3}
+  - {x: 3, y: 0, z: 9}
+  - {x: 3, y: 0, z: 3}
+  - {x: -3, y: 3, z: 9}
+  - {x: -3, y: 3, z: 3}
+  - {x: -3, y: 0, z: 9}
+  - {x: -3, y: 0, z: 3}
+  - {x: 9, y: 3, z: -3}
+  - {x: 9, y: 3, z: -9.000003}
+  - {x: 9, y: 0, z: -3}
+  - {x: 9, y: 0, z: -9.000003}
+  - {x: 3, y: 3, z: -3}
+  - {x: 3, y: 3, z: -9.000003}
+  - {x: 3, y: 0, z: -3}
+  - {x: 3, y: 0, z: -9.000003}
+  - {x: 9, y: 3, z: 3}
+  - {x: 9, y: 3, z: -3}
+  - {x: 9, y: 0, z: 3}
+  - {x: 9, y: 0, z: -3}
+  - {x: 3, y: 3, z: 3}
+  - {x: 3, y: 3, z: -3}
+  - {x: 3, y: 0, z: 3}
+  - {x: 3, y: 0, z: -3}
+  - {x: 9, y: 3, z: 9}
+  - {x: 9, y: 3, z: 3}
+  - {x: 9, y: 0, z: 9}
+  - {x: 9, y: 0, z: 3}
+  - {x: 3, y: 3, z: 9}
+  - {x: 3, y: 3, z: 3}
+  - {x: 3, y: 0, z: 9}
+  - {x: 3, y: 0, z: 3}
+  - {x: 15, y: 3, z: -3}
+  - {x: 15, y: 3, z: -9.000003}
+  - {x: 15, y: 0, z: -3}
+  - {x: 15, y: 0, z: -9.000003}
+  - {x: 9, y: 3, z: -3}
+  - {x: 9, y: 3, z: -9.000003}
+  - {x: 9, y: 0, z: -3}
+  - {x: 9, y: 0, z: -9.000003}
+  - {x: 15, y: 3, z: 3}
+  - {x: 15, y: 3, z: -3}
+  - {x: 15, y: 0, z: 3}
+  - {x: 15, y: 0, z: -3}
+  - {x: 9, y: 3, z: 3}
+  - {x: 9, y: 3, z: -3}
+  - {x: 9, y: 0, z: 3}
+  - {x: 9, y: 0, z: -3}
+  - {x: 15, y: 3, z: 9}
+  - {x: 15, y: 3, z: 3}
+  - {x: 15, y: 0, z: 9}
+  - {x: 15, y: 0, z: 3}
+  - {x: 9, y: 3, z: 9}
+  - {x: 9, y: 3, z: 3}
+  - {x: 9, y: 0, z: 9}
+  - {x: 9, y: 0, z: 3}
+  m_Dering: 1
 --- !u!1001 &2103796955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6820,6 +6992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MoveableStatue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844121189105333762, guid: e53bc8603adb3ea45a9df80f65ffad4b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1844121189105333763, guid: e53bc8603adb3ea45a9df80f65ffad4b,
         type: 3}
