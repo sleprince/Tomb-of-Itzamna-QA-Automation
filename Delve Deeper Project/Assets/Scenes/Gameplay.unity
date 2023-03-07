@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -291,7 +291,7 @@ PrefabInstance:
     - target: {fileID: 8718393035769354236, guid: 63ec74bcdac9d7a47bb2035c44714734,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63ec74bcdac9d7a47bb2035c44714734, type: 3}
@@ -1579,46 +1579,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1123015207688318204, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1123015207688318204, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.0625
-      objectReference: {fileID: 0}
-    - target: {fileID: 1123015207688318204, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.20000051
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337385532546272868, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337385532546272868, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.0625
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337385532546272868, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.20000051
-      objectReference: {fileID: 0}
-    - target: {fileID: 9021994156531887524, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9021994156531887524, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_BounceIntensity
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 9021994156749259217, guid: 9f8fe6377ff644548b0a91ad49ada6df,
         type: 3}
       propertyPath: m_Name
@@ -1678,21 +1638,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9021994157168905952, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_CollideAgainst.m_Bits
-      value: 247
-      objectReference: {fileID: 0}
-    - target: {fileID: 9021994158321664416, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9021994158321664416, guid: 9f8fe6377ff644548b0a91ad49ada6df,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f8fe6377ff644548b0a91ad49ada6df, type: 3}

@@ -108,7 +108,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9528302, g: 0.8515263, b: 0.32809716, a: 1}
-  m_Intensity: 0.35
+  m_Intensity: 3.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -150,7 +150,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -7146,6 +7146,7 @@ GameObject:
   - component: {fileID: 9021994158321664419}
   - component: {fileID: 9021994158321664417}
   - component: {fileID: 9021994158321664418}
+  - component: {fileID: 3204626687698257142}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -7161,7 +7162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9021994158343432538}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 28.2, y: 1.5, z: 0}
+  m_LocalPosition: {x: 4, y: 1, z: 0}
   m_LocalScale: {x: 1.5000001, y: 1.5, z: 1.5000001}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7267,8 +7268,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushLayers:
     serializedVersion: 2
-    m_Bits: 64
-  canPush: 1
+    m_Bits: 0
+  canPush: 0
   strength: 0.5
 --- !u!114 &9021994158321664428
 MonoBehaviour:
@@ -7416,6 +7417,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactAction: {fileID: 4696709422361104593, guid: 4419d82f33d36e848b3ed5af4c8da37e,
     type: 3}
+--- !u!114 &3204626687698257142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021994158343432538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5373ea2b5b95a874cbc2fa76c5ad4343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamTransform: {fileID: 9021994156831910825}
+  hitRange: 3
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &9021994158382783022
 GameObject:
   m_ObjectHideFlags: 0
@@ -7792,12 +7810,12 @@ PrefabInstance:
     - target: {fileID: 6009008716104325587, guid: 65ab565b7429a374d81d30aeab626873,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6009008716104325587, guid: 65ab565b7429a374d81d30aeab626873,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5625
+      value: 3.0625
       objectReference: {fileID: 0}
     - target: {fileID: 6009008716104325587, guid: 65ab565b7429a374d81d30aeab626873,
         type: 3}
@@ -7913,12 +7931,12 @@ PrefabInstance:
     - target: {fileID: 8259970617058418526, guid: dc471bf57986beb459e7c1e68d82196e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8259970617058418526, guid: dc471bf57986beb459e7c1e68d82196e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5625
+      value: 3.0625
       objectReference: {fileID: 0}
     - target: {fileID: 8259970617058418526, guid: dc471bf57986beb459e7c1e68d82196e,
         type: 3}
