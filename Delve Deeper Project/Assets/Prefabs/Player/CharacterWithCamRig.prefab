@@ -114,7 +114,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -150,9 +150,9 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 2
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_BounceIntensity: 0
+  m_ColorTemperature: 3954
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -7985,6 +7985,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc471bf57986beb459e7c1e68d82196e, type: 3}
+--- !u!1 &1123015207688318201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8259970617058418523, guid: dc471bf57986beb459e7c1e68d82196e,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021994158506767266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &994768118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123015207688318201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535263983ff298843923b23a35822997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactAction: {fileID: 4696709422361104593, guid: 4419d82f33d36e848b3ed5af4c8da37e,
+    type: 3}
+  forceAmount: 500
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerMovement: {fileID: 9021994158321664430}
 --- !u!4 &1123015207688318204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8259970617058418526, guid: dc471bf57986beb459e7c1e68d82196e,

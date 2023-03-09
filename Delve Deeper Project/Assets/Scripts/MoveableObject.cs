@@ -25,7 +25,7 @@ public class MoveableObject : MonoBehaviour, IInteractable
 
     public void Interact(Transform interactorTransform)
     {
-        Debug.Log("Statue");
+        //Debug.Log("Statue");
     }
 
     public string GetInteractText()

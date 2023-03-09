@@ -1,25 +1,36 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class MessageController : MonoBehaviour
 {
-    TextMeshProUGUI messageText;
+    [SerializeField] private Animator anim;
+    public TextMeshProUGUI messageText;
 
-    private void Start()
+    protected Coroutine DeactivateCoroutine;
+    protected readonly int HashActiveParam = Animator.StringToHash("Active");
+
+    IEnumerator SetAnimParamWthDelay(float delay)
     {
-        messageText = this.GetComponent<TextMeshProUGUI>();
-        messageText.enabled = false;
+        yield return new WaitForSeconds(delay);
+        anim.SetBool(HashActiveParam, false);
     }
 
-    public void SetMessage(GameObject obj)
+    public void ActivateCanvasWithText(string text)
     {
-        messageText.enabled = true;
-        messageText.text = "Journal updated";
-        Invoke("DisableAfterTime", 2f);
+        if (DeactivateCoroutine != null)
+        {
+            StopCoroutine(DeactivateCoroutine);
+            DeactivateCoroutine = null;
+        }
+
+        gameObject.SetActive(true);
+        anim.SetBool(HashActiveParam, true);
+        messageText.text = text;
     }
 
-    void DisableAfterTime()
+    public void DeactivateCanvasWithDelay(float delay)
     {
-        messageText.enabled = false;
+        DeactivateCoroutine = StartCoroutine(SetAnimParamWthDelay(delay));
     }
 }
