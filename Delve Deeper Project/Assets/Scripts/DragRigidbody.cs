@@ -40,8 +40,12 @@ public class DragRigidbody : MonoBehaviour
 
         if (control.wasReleasedThisFrame)
         {
-            selectedRigidbody = null;
             playerMovement.LockCameraPosition = false;
+            playerMovement.HandlePulling(false);
+
+            selectedRigidbody.transform.SetParent(null);            
+
+            selectedRigidbody = null;
         }
     }
 
@@ -51,11 +55,13 @@ public class DragRigidbody : MonoBehaviour
         {
             Vector3 positionOffset = targetCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, selectionDistance)) - originalScreenTargetPosition;
             selectedRigidbody.velocity = (originalRigidbodyPosition + positionOffset - selectedRigidbody.transform.position) * forceAmount * Time.deltaTime;
+            selectedRigidbody.transform.SetParent(playerController.transform, true);
 
-            playerController.transform.forward = (new Vector3(selectedRigidbody.transform.position.x, playerController.transform.position.y, 
-                                                                selectedRigidbody.transform.position.z) - playerController.transform.position).normalized;
+            playerController.transform.rotation = Quaternion.identity;
+            playerController.transform.forward = (new Vector3(selectedRigidbody.transform.position.x, playerController.transform.position.y,
+                                                        selectedRigidbody.transform.position.z) - playerController.transform.position).normalized;
 
-            //playerMovement.HandleDragging(true);
+            playerMovement.HandlePulling(true);
         }
     }
 
@@ -63,7 +69,7 @@ public class DragRigidbody : MonoBehaviour
     {
         Ray ray = targetCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, interactLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, 5f, interactLayer))
         {
             if (hit.collider.gameObject.GetComponent<Rigidbody>())
             {
