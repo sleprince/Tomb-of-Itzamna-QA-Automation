@@ -13,7 +13,7 @@ public class RingsPuzzleControl : MonoBehaviour
     private void Awake()
     {
         puzzle = FindObjectOfType<RingsPuzzle>();
-        player = FindObjectOfType<ThirdPersonController>();
+        player = GetComponent<ThirdPersonController>();
     }
 
     private void Update()
@@ -32,14 +32,14 @@ public class RingsPuzzleControl : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        PuzzleTrigger pt = null;
+        RingPuzzleTrigger pt = null;
 
         if (RingsPuzzle.RingsPuzzleCompleted)
             return;
 
-        if (other.GetComponent<PuzzleTrigger>())
+        if (other.GetComponent<RingPuzzleTrigger>())
         {
-            pt = other.GetComponent<PuzzleTrigger>();
+            pt = other.GetComponent<RingPuzzleTrigger>();
         }
 
         if (interactHeld)
@@ -47,8 +47,12 @@ public class RingsPuzzleControl : MonoBehaviour
             if (pt != null)
             {
                 puzzle.RotatePillar(pt);
-
+                player.HandlePushing(true);
             }
+        }
+        else
+        {
+            player.HandlePushing(false);
         }
     }
 }

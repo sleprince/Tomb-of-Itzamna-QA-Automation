@@ -19,9 +19,7 @@ public class RingsPuzzle : MonoBehaviour
 
     public static bool RingsPuzzleCompleted = false;
 
-    //[SerializeField] GameEvent allRingsAligned;
-
-    PuzzleTrigger[] triggers;
+    RingPuzzleTrigger[] triggers;
 
     CharacterController playerController;
     ThirdPersonController player;
@@ -56,7 +54,7 @@ public class RingsPuzzle : MonoBehaviour
 
     private void Awake()
     {
-        triggers = GetComponentsInChildren<PuzzleTrigger>();
+        triggers = GetComponentsInChildren<RingPuzzleTrigger>();
         playerController = FindObjectOfType<CharacterController>();
         player = FindObjectOfType<ThirdPersonController>();
 
@@ -99,7 +97,7 @@ public class RingsPuzzle : MonoBehaviour
 
         if (DisplayedVictory && !VictoryLerpComplete)
         {
-            //player.HandlePushing(false);
+            player.HandlePushing(false);
             PerformVictoryLerp();
         }
     }
@@ -173,9 +171,9 @@ public class RingsPuzzle : MonoBehaviour
         centralPillar.position = new Vector3(centralPillar.position.x, centralHeight, centralPillar.position.z);
     }
 
-    public void RotatePillar(PuzzleTrigger trigger)
+    public void RotatePillar(RingPuzzleTrigger trigger)
     {
-        float rot = (trigger.direction == PuzzleTriggerDirection.Clockwise ? pushSpeed : -pushSpeed) * Time.deltaTime;
+        float rot = (trigger.direction == RingPuzzleTriggerDirection.Clockwise ? pushSpeed : -pushSpeed) * Time.deltaTime;
         trigger.transform.parent.parent.Rotate(Vector3.up * rot);
 
         playerController.enabled = false;

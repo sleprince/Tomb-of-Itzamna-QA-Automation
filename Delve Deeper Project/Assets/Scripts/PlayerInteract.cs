@@ -21,7 +21,7 @@ public class PlayerInteract : MonoBehaviour
     public IInteractable GetInteractable()
     {
         List<IInteractable> interactableList = new List<IInteractable>();
-        float interactRange = 2f;
+        float interactRange = 1.5f;
         Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
         foreach(Collider collider in colliderArray)
         {
