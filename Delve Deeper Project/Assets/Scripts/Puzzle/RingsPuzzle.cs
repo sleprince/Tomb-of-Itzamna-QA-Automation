@@ -1,7 +1,7 @@
 using StarterAssets;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RingsPuzzle : MonoBehaviour
 {
@@ -19,7 +19,12 @@ public class RingsPuzzle : MonoBehaviour
 
     public static bool RingsPuzzleCompleted = false;
 
+    //[SerializeField] GameEvent allRingsAligned;
+
+    PuzzleTrigger[] triggers;
+
     RingPuzzleTrigger[] triggers;
+>>>>>>> Stashed changes:Delve Deeper Project/Assets/Scripts/Puzzle/RingsPuzzle.cs
 
     CharacterController playerController;
     ThirdPersonController player;
@@ -161,6 +166,8 @@ public class RingsPuzzle : MonoBehaviour
         {
             lerpVal = 1f;
             VictoryLerpComplete = true;
+
+            OnRingsPuzzleCompleted?.Invoke();
         }
 
         outerPillars.localEulerAngles = Vector3.Lerp(outerStartVictory, outerEndVictory, lerpVal);

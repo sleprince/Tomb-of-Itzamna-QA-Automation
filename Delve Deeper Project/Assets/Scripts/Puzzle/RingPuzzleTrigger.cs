@@ -13,8 +13,22 @@ public enum RingPuzzleTriggerDirection
     AntiClockwise
 }
 
-public class RingPuzzleTrigger : MonoBehaviour
 {
     public RingPuzzleTriggerType type;
     public RingPuzzleTriggerDirection direction;
+
+    public string GetInteractText()
+    {
+        return "Rotate Pillar";
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
+    public void Interact(Transform interactorTransform)
+    {
+        
+    }
 }

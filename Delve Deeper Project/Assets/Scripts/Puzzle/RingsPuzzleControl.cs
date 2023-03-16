@@ -12,7 +12,6 @@ public class RingsPuzzleControl : MonoBehaviour
 
     private void Awake()
     {
-        puzzle = FindObjectOfType<RingsPuzzle>();
         player = GetComponent<ThirdPersonController>();
     }
 
@@ -26,6 +25,8 @@ public class RingsPuzzleControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        puzzle = FindObjectOfType<RingsPuzzle>();
+
         if (RingsPuzzle.RingsPuzzleCompleted)
             return;
     }
@@ -47,12 +48,21 @@ public class RingsPuzzleControl : MonoBehaviour
             if (pt != null)
             {
                 puzzle.RotatePillar(pt);
-                player.HandlePushing(true);
+                //player.HandlePushing(true);
             }
         }
         else
         {
             player.HandlePushing(false);
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (RingsPuzzle.RingsPuzzleCompleted)
+            return;
+
+        RingPuzzleTrigger pt = other.GetComponent<RingPuzzleTrigger>();
+        pt = null;
     }
 }
