@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BrazierPuzzle : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class BrazierPuzzle : MonoBehaviour
 
     bool statusChecked = false;
     bool litOrderCorrect = true;
+
+    public static UnityAction OnBrazierPuzzleCompleted;
 
     public void AddBrazier(GameObject newBrazier)
     {
@@ -50,6 +53,7 @@ public class BrazierPuzzle : MonoBehaviour
         if (litOrderCorrect)
         {
             StartCoroutine(RightOrderSelection());
+            OnBrazierPuzzleCompleted?.Invoke();
         }
     }
 

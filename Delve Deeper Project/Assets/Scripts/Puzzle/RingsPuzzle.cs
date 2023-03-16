@@ -43,8 +43,8 @@ public class RingsPuzzle : MonoBehaviour
     float victoryStartTime;
     float victoryDuration = 2f;
 
-    float centralPillarStartHeight = -1.5f;
-    float centralPillarVictoryHeight = 0.5f;
+    float centralPillarStartHeight = -0.5f;
+    float centralPillarVictoryHeight = 2.625f;
 
     List<GameObject> innerPillarFires = new();
     List<GameObject> middlePillarFires = new();
@@ -95,6 +95,7 @@ public class RingsPuzzle : MonoBehaviour
         if (RingsPuzzleCompleted && !DisplayedVictory)
         {
             DisplayVictory();
+            DisplayedVictory = true;
         }
 
         if (DisplayedVictory && !VictoryLerpComplete)

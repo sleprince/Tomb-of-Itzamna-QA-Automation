@@ -1,19 +1,19 @@
-using UnityEngine;
 using Cinemachine;
 using StarterAssets;
+using UnityEngine;
 
-public class RingsCameraTrigger : MonoBehaviour
+public class BrazierCameraTrigger : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera puzzleCam;
 
     private void Awake()
     {
-        RingsPuzzle.OnRingsPuzzleCompleted += OnRingsPuzzleCompleted;
+        BrazierPuzzle.OnBrazierPuzzleCompleted += OnBrazierPuzzleCompleted;
     }
 
     private void OnDestroy()
     {
-        RingsPuzzle.OnRingsPuzzleCompleted -= OnRingsPuzzleCompleted;
+        RingsPuzzle.OnRingsPuzzleCompleted -= OnBrazierPuzzleCompleted;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,7 +34,7 @@ public class RingsCameraTrigger : MonoBehaviour
         }
     }
 
-    void OnRingsPuzzleCompleted()
+    void OnBrazierPuzzleCompleted()
     {
         puzzleCam.Priority = 0;
         puzzleCam.gameObject.SetActive(false);

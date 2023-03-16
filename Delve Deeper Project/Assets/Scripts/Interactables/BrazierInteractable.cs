@@ -26,7 +26,7 @@ public class BrazierInteractable : MonoBehaviour, IInteractable
     {
         if (aMultiBrazier)
         {
-            BrazierPuzzle puzzle = GameObject.Find("Puzzle").GetComponent<BrazierPuzzle>();
+            BrazierPuzzle puzzle = FindObjectOfType<BrazierPuzzle>();
             puzzle.AddBrazier(this.gameObject);
 
             if (!m_fire.activeSelf)
