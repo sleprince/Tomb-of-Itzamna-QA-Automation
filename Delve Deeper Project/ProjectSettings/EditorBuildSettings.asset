@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Start Game.unity
+    guid: 3c5e46534bbdc62419f6a60af99638ea
   - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: effc1a8424495b14a8e53f35bfb165ff
@@ -17,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RingsPuzzle.unity
     guid: 9137f0d30b73e3b49b19c5292e007c9a
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: a8acea1439ff29b479d7b1cf4bd572da
   m_configObjects: {}

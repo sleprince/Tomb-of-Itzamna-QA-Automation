@@ -41,9 +41,7 @@ public class DragRigidbody : MonoBehaviour
         if (control.wasReleasedThisFrame)
         {
             playerMovement.LockCameraPosition = false;
-            playerMovement.HandlePulling(false);
-
-            selectedRigidbody.transform.SetParent(null);            
+            playerMovement.HandlePulling(false);           
 
             selectedRigidbody = null;
         }
@@ -67,7 +65,7 @@ public class DragRigidbody : MonoBehaviour
     {
         Ray ray = targetCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 5f, interactLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, 50f, interactLayer))
         {
             if (hit.collider.gameObject.GetComponent<Rigidbody>())
             {
