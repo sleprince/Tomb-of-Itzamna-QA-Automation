@@ -19,12 +19,9 @@ public class RingsPuzzle : MonoBehaviour
 
     public static bool RingsPuzzleCompleted = false;
 
-    //[SerializeField] GameEvent allRingsAligned;
-
-    PuzzleTrigger[] triggers;
+    public static UnityAction OnRingsPuzzleCompleted;
 
     RingPuzzleTrigger[] triggers;
->>>>>>> Stashed changes:Delve Deeper Project/Assets/Scripts/Puzzle/RingsPuzzle.cs
 
     CharacterController playerController;
     ThirdPersonController player;
