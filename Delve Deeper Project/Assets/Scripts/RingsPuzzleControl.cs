@@ -12,8 +12,12 @@ public class RingsPuzzleControl : MonoBehaviour
 
     private void Awake()
     {
+<<<<<<< Updated upstream:Delve Deeper Project/Assets/Scripts/RingsPuzzleControl.cs
         puzzle = FindObjectOfType<RingsPuzzle>();
         player = FindObjectOfType<ThirdPersonController>();
+=======
+        player = GetComponent<ThirdPersonController>();
+>>>>>>> Stashed changes:Delve Deeper Project/Assets/Scripts/Puzzle/RingsPuzzleControl.cs
     }
 
     private void Update()
@@ -26,6 +30,8 @@ public class RingsPuzzleControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        puzzle = FindObjectOfType<RingsPuzzle>();
+
         if (RingsPuzzle.RingsPuzzleCompleted)
             return;
     }
@@ -47,8 +53,21 @@ public class RingsPuzzleControl : MonoBehaviour
             if (pt != null)
             {
                 puzzle.RotatePillar(pt);
+<<<<<<< Updated upstream:Delve Deeper Project/Assets/Scripts/RingsPuzzleControl.cs
 
+=======
+                //player.HandlePushing(true);
+>>>>>>> Stashed changes:Delve Deeper Project/Assets/Scripts/Puzzle/RingsPuzzleControl.cs
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (RingsPuzzle.RingsPuzzleCompleted)
+            return;
+
+        RingPuzzleTrigger pt = other.GetComponent<RingPuzzleTrigger>();
+        pt = null;
     }
 }
