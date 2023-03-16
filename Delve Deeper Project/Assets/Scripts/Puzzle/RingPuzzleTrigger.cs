@@ -13,6 +13,7 @@ public enum RingPuzzleTriggerDirection
     AntiClockwise
 }
 
+public class RingPuzzleTrigger : MonoBehaviour, IInteractable
 {
     public RingPuzzleTriggerType type;
     public RingPuzzleTriggerDirection direction;
