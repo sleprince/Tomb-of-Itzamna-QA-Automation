@@ -48,7 +48,7 @@ public class RingsPuzzleControl : MonoBehaviour
             if (pt != null)
             {
                 puzzle.RotatePillar(pt);
-                //player.HandlePushing(true);
+                player.HandlePushing(true);
             }
         }
         else

@@ -112,6 +112,9 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        private int pushLayer;
+        private int pullLayer;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -152,6 +155,9 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            pushLayer = _animator.GetLayerIndex("Push");
+            pullLayer = _animator.GetLayerIndex("Pull");
         }
 
         private void Update()
@@ -354,12 +360,34 @@ namespace StarterAssets
 
         public void HandlePulling(bool interactPressed)
         {
-            _animator.SetBool(_animIDPulling, interactPressed);
+            if (_hasAnimator)
+            {
+                if (interactPressed)
+                {
+                    _animator.SetLayerWeight(pullLayer, 1);
+                }
+                else
+                {
+                    _animator.SetLayerWeight(pullLayer, 0);
+                }
+            }
+            //_animator.SetBool(_animIDPulling, interactPressed);
         }
 
         public void HandlePushing(bool interactPressed)
         {
-            _animator.SetBool(_animIDPushing, interactPressed);
+            if (_hasAnimator)
+            {
+                if (interactPressed)
+                {
+                    _animator.SetLayerWeight(pushLayer, 1);
+                }
+                else
+                {
+                    _animator.SetLayerWeight(pushLayer, 0);
+                }
+            }
+            //_animator.SetBool(_animIDPushing, interactPressed);
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
