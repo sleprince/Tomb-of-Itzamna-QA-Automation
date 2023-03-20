@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText: (HOLD) Move Statue
-  movingSound: {fileID: 8300000, guid: 2c723e19900f2e842a01c7b01c062ce7, type: 3}
+  movingSound: {fileID: 8300000, guid: 238ac1b0d2322214d90533533a555854, type: 3}
 --- !u!114 &4213571934168190181
 MonoBehaviour:
   m_ObjectHideFlags: 0

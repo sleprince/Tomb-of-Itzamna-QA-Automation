@@ -20,7 +20,7 @@ public class RingPuzzleTrigger : MonoBehaviour, IInteractable
 
     public string GetInteractText()
     {
-        return "Rotate Pillar";
+        return "(HOLD) Rotate Pillar";
     }
 
     public Transform GetTransform()
