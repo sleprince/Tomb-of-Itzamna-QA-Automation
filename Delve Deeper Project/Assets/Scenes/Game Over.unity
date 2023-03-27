@@ -21509,11 +21509,10 @@ MonoBehaviour:
 
 
     Please
-    consider filling out the feedback form (link on my itch profile)'
+    consider filling out the feedback form (link on my Itch profile page)'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 444be5b9cf2bd474c9e08d509286d315, type: 2}
-  m_sharedMaterial: {fileID: 4510698067985780032, guid: 444be5b9cf2bd474c9e08d509286d315,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21537,8 +21536,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 58
+  m_fontSizeBase: 58
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -21549,9 +21548,9 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -23.5
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: -30
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
@@ -35406,9 +35405,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 444be5b9cf2bd474c9e08d509286d315, type: 2}
-  m_sharedMaterial: {fileID: 4510698067985780032, guid: 444be5b9cf2bd474c9e08d509286d315,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -35432,8 +35430,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 56
+  m_fontSize: 46
+  m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -65532,9 +65530,8 @@ MonoBehaviour:
 
     Third Person Controller by UNITY'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 444be5b9cf2bd474c9e08d509286d315, type: 2}
-  m_sharedMaterial: {fileID: 4510698067985780032, guid: 444be5b9cf2bd474c9e08d509286d315,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -65570,7 +65567,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -15
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -75024,7 +75021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 38.2}
+  m_AnchoredPosition: {x: 0, y: 38.19995}
   m_SizeDelta: {x: 225.44, y: 57.6}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2059367509

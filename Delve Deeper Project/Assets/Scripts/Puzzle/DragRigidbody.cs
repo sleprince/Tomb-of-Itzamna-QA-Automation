@@ -34,7 +34,6 @@ public class DragRigidbody : MonoBehaviour
         {
             selectedRigidbody = GetRigidbodyFromScreenCentre();
             playerMovement.LockCameraPosition = true;
-            torch.SetActive(false);
         }
 
         if (control.wasReleasedThisFrame)
@@ -51,6 +50,8 @@ public class DragRigidbody : MonoBehaviour
     {
         if (selectedRigidbody)
         {
+            torch.SetActive(false);
+
             Vector3 positionOffset = targetCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, selectionDistance)) - originalScreenTargetPosition;
             selectedRigidbody.velocity = (originalRigidbodyPosition + positionOffset - selectedRigidbody.transform.position) * forceAmount * Time.deltaTime;
 
