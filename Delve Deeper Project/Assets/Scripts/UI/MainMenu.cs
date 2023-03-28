@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class MainMenu : MonoBehaviour
 {
@@ -29,6 +32,10 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+		    Application.Quit();
+#endif
     }
 }

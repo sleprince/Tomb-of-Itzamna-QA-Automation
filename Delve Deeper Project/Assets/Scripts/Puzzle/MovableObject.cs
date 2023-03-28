@@ -2,10 +2,9 @@ using StarterAssets;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(AudioSource))]
-public class MovableObject : MonoBehaviour, IInteractable
+public class MovableObject : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField] private string interactText;
 
     AudioSource audioSource;
     [SerializeField] private AudioClip movingSound;
@@ -27,20 +26,5 @@ public class MovableObject : MonoBehaviour, IInteractable
         {
             audioSource.Play();
         }
-    }
-
-    public void Interact(Transform interactorTransform)
-    {
-       
-    }
-
-    public string GetInteractText()
-    {
-        return interactText;
-    }
-
-    public Transform GetTransform()
-    {
-        return transform;
     }
 }
