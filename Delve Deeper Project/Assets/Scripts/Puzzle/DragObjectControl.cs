@@ -37,10 +37,9 @@ public class DragObjectControl : MonoBehaviour
 
         if (interactHeld)
         {
-            torch.SetActive(false);
-
             if (trig != null)
             {
+                torch.SetActive(false);
                 movableObject.MoveObject(trig);
                 player.HandlePulling(true);
             }
@@ -54,7 +53,7 @@ public class DragObjectControl : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        RingPuzzleTrigger pt = other.GetComponent<RingPuzzleTrigger>();
-        pt = null;
+        TriggerInteractable trig = other.GetComponent<TriggerInteractable>();
+        trig = null;
     }
 }
