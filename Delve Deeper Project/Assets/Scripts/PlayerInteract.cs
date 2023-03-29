@@ -1,52 +1,32 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] InputActionReference interactAction;
+    public IInteractable m_Interactable;
 
     void Update()
     {
         if (interactAction.action.triggered)
         {
-            IInteractable interactable = GetInteractable();
-            if (interactable != null)
+            if (m_Interactable != null)
             {
-                interactable.Interact(transform);
+                m_Interactable.Interact(transform);
             }
         }
     }
 
-    public IInteractable GetInteractable()
+    private void OnTriggerEnter(Collider other)
     {
-        List<IInteractable> interactableList = new List<IInteractable>();
-        float interactRange = 2f;
-        Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
-        foreach(Collider collider in colliderArray)
+        if (other.TryGetComponent(out IInteractable interactable))
         {
-            if (collider.TryGetComponent(out IInteractable interactable))
-            {
-                interactableList.Add(interactable);
-            }
+            m_Interactable = interactable;
         }
+    }
 
-        IInteractable closestInteractable = null;
-        foreach(IInteractable interactable in interactableList)
-        {
-            if (closestInteractable == null)
-            {
-                closestInteractable = interactable;
-            }
-            else
-            {
-                if (Vector3.Distance(transform.position, interactable.GetTransform().position) <
-                    Vector3.Distance(transform.position, closestInteractable.GetTransform().position))
-                {
-                    closestInteractable = interactable;
-                }
-            }
-        }
-        return closestInteractable;
+    private void OnTriggerExit(Collider other)
+    {
+        m_Interactable = null;
     }
 }

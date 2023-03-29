@@ -15,4 +15,6 @@ public sealed class GameManager
             return instance; 
         }
     }
+
+    public bool GotKey { get; set; }
 }

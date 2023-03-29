@@ -9,9 +9,9 @@ public class PlayerInteractUI : MonoBehaviour
 
     private void Update()
     {
-        if (playerInteract.GetInteractable() != null)
+        if (playerInteract.m_Interactable != null)
         {
-            Show(playerInteract.GetInteractable());
+            Show(playerInteract.m_Interactable);
         }
         else
         {

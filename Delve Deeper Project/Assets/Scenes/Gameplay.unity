@@ -331,7 +331,7 @@ PrefabInstance:
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
         type: 3}
       propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: The switch needs to have something heavy on it to keep the door open.
+      value: The switch needs to have something heavy on it to keep the door open. 
         Is there something here I could use?
       objectReference: {fileID: 0}
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
@@ -607,7 +607,7 @@ PrefabInstance:
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
         type: 3}
       propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Hmm... This door is locked. I need to find the key.
+      value: Hmm... This door is locked.  I need to find the key.
       objectReference: {fileID: 0}
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
         type: 3}
@@ -1415,7 +1415,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2627571631953391247}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2627571631953391249}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4e2d8b229379fc44ab00640799f86f3, type: 3}
@@ -2596,7 +2596,7 @@ PrefabInstance:
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
         type: 3}
       propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: This door is locked also. Those braziers look interesting though...
+      value: This door is locked also.  Those braziers look interesting though...
       objectReference: {fileID: 0}
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
         type: 3}
@@ -3107,7 +3107,7 @@ PrefabInstance:
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
         type: 3}
       propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Well, that could be my exit. Just need to solve this puzzle first
+      value: Well, that could be my exit.  Just need to solve this puzzle first
       objectReference: {fileID: 0}
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
         type: 3}
@@ -3439,7 +3439,7 @@ PrefabInstance:
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
         type: 3}
       propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: I need to get through the door. Maybe that switch on the floor does
+      value: I need to get through the door.  Maybe that switch on the floor does
         something.
       objectReference: {fileID: 0}
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
@@ -4224,18 +4224,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f80238d885bc44742819a69b49becfce, type: 3}
---- !u!114 &2627571631953391248 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2627571632701468405, guid: f80238d885bc44742819a69b49becfce,
+--- !u!1 &2627571631953391249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2627571632697001473, guid: f80238d885bc44742819a69b49becfce,
     type: 3}
   m_PrefabInstance: {fileID: 2627571631953391247}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &2627571631953391250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627571631953391249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: da3991a8494a20842a7cbef48500efee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactAction: {fileID: 4696709422361104593, guid: 4419d82f33d36e848b3ed5af4c8da37e,
+    type: 3}
+  torch: {fileID: 77435322}
 --- !u!1001 &5804240942425875343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4276,17 +4285,17 @@ PrefabInstance:
     - target: {fileID: 281624466887289919, guid: bfe87dc3d094cda44b0c71abc63e06c8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.23870173
+      value: 0.2387017
       objectReference: {fileID: 0}
     - target: {fileID: 281624466887289919, guid: bfe87dc3d094cda44b0c71abc63e06c8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 2.341682e-16
+      value: 0.000000032356827
       objectReference: {fileID: 0}
     - target: {fileID: 281624466887289919, guid: bfe87dc3d094cda44b0c71abc63e06c8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 3.2362545e-16
+      value: -0.000000007953544
       objectReference: {fileID: 0}
     - target: {fileID: 2462767378611392160, guid: bfe87dc3d094cda44b0c71abc63e06c8,
         type: 3}
@@ -4331,17 +4340,17 @@ PrefabInstance:
     - target: {fileID: 2462767378611392167, guid: bfe87dc3d094cda44b0c71abc63e06c8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.23870173
+      value: 0.2387017
       objectReference: {fileID: 0}
     - target: {fileID: 2462767378611392167, guid: bfe87dc3d094cda44b0c71abc63e06c8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 2.341682e-16
+      value: 0.000000032356827
       objectReference: {fileID: 0}
     - target: {fileID: 2462767378611392167, guid: bfe87dc3d094cda44b0c71abc63e06c8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 3.2362545e-16
+      value: -0.000000007953544
       objectReference: {fileID: 0}
     - target: {fileID: 5804240942741783770, guid: bfe87dc3d094cda44b0c71abc63e06c8,
         type: 3}
@@ -4406,32 +4415,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 281624466291203583, guid: bfe87dc3d094cda44b0c71abc63e06c8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bfe87dc3d094cda44b0c71abc63e06c8, type: 3}
---- !u!1 &5804240942425875344 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2462767378611392162, guid: bfe87dc3d094cda44b0c71abc63e06c8,
-    type: 3}
-  m_PrefabInstance: {fileID: 5804240942425875343}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5804240942425875345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5804240942425875344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535263983ff298843923b23a35822997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactAction: {fileID: 4696709422361104593, guid: 4419d82f33d36e848b3ed5af4c8da37e,
-    type: 3}
-  forceAmount: 500
-  interactLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  playerMovement: {fileID: 2627571631953391248}
-  torch: {fileID: 77435322}
 --- !u!224 &6400555312090720678
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5077,7 +5060,7 @@ PrefabInstance:
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,
         type: 3}
       propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: That collapse has blocked the entrance. Hopefully I can find another
+      value: That collapse has blocked the entrance.  Hopefully I can find another
         exit somewhere in this tomb.
       objectReference: {fileID: 0}
     - target: {fileID: 4826130626873953656, guid: a933c02eebbd4d749869cd5a6d4c2528,

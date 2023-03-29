@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2917548509090118462}
   - component: {fileID: 2917548509090118457}
   - component: {fileID: 6989688854118122993}
+  - component: {fileID: 2952017380504233621}
   m_Layer: 0
   m_Name: TempleBrazier_B
   m_TagString: Untagged
@@ -131,6 +132,19 @@ MonoBehaviour:
   renderers:
   - {fileID: 8382189128068742888}
   highlightColour: {r: 1, g: 1, b: 1, a: 0.5882353}
+--- !u!65 &2952017380504233621
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382189128068742890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 1.9336852, z: 2.5}
+  m_Center: {x: 0.017980013, y: 0.96664256, z: -0.0021598046}
 --- !u!1001 &9148632751896804807
 PrefabInstance:
   m_ObjectHideFlags: 0
