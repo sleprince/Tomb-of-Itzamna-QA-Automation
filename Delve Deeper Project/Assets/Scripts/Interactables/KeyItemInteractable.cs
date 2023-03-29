@@ -23,6 +23,7 @@ public class KeyItemInteractable : MonoBehaviour, IInteractable
     {
         KeyItem item = GetComponent<KeyItem>();
         item.Event.Raise(this.gameObject);
-        Destroy(gameObject);
+        this.GetComponent<MeshRenderer>().enabled = false;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 107);
     }
 }

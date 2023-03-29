@@ -27,6 +27,9 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        m_Interactable = null;
+        if (other.TryGetComponent(out IInteractable interactable))
+        {
+            m_Interactable = null;
+        }
     }
 }
