@@ -49,11 +49,13 @@ public class RingsPuzzleControl : MonoBehaviour
             {
                 puzzle.RotatePillar(pt);
                 player.HandlePushing(true);
+                player.MovingHeavyObject = true;
             }
         }
         else
         {
             player.HandlePushing(false);
+            player.MovingHeavyObject = false;
         }
     }
 
