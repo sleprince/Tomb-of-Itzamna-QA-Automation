@@ -40,7 +40,6 @@ public class DragObjectControl : MonoBehaviour
             if (trig != null)
             {
                 player.LockCameraPosition = !player.LockCameraPosition;
-                player.MoveSpeed = 0f;
                 torch.SetActive(false);
                 movableObject.MoveObject(trig);
                 player.HandlePulling(true);
@@ -49,7 +48,6 @@ public class DragObjectControl : MonoBehaviour
         }
         else
         {
-            player.MoveSpeed = 2f;
             torch.SetActive(true);
             player.HandlePulling(false);
             player.MovingHeavyObject = false;

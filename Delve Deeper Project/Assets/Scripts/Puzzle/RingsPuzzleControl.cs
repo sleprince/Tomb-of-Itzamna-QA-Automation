@@ -6,6 +6,7 @@ public class RingsPuzzleControl : MonoBehaviour
 {
     [SerializeField] InputActionReference interactAction;
     bool interactHeld = false;
+    [SerializeField] private GameObject torch;
 
     RingsPuzzle puzzle;
     ThirdPersonController player;
@@ -47,6 +48,7 @@ public class RingsPuzzleControl : MonoBehaviour
         {
             if (pt != null)
             {
+                torch.SetActive(false);
                 puzzle.RotatePillar(pt);
                 player.HandlePushing(true);
                 player.MovingHeavyObject = true;
@@ -54,6 +56,7 @@ public class RingsPuzzleControl : MonoBehaviour
         }
         else
         {
+            torch.SetActive(true);
             player.HandlePushing(false);
             player.MovingHeavyObject = false;
         }

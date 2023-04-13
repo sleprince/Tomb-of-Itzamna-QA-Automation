@@ -115,6 +115,13 @@ public class RingsPuzzle : MonoBehaviour
         {
             Debug.Log("All Aligned!");
 
+            foreach (RingPuzzleTrigger trigger in triggers)
+            {
+                trigger.transform.gameObject.SetActive(false);
+            }
+
+            player.transform.GetComponent<PlayerInteract>().m_Interactable = null;
+
             return true;
         }
 
@@ -154,11 +161,6 @@ public class RingsPuzzle : MonoBehaviour
         outerStartVictory = outerPillars.localEulerAngles;
         middleStartVictory = middlePillars.localEulerAngles;
         innerStartVictory = innerPillars.localEulerAngles;
-
-        for (int i = 0; i < triggers.Length; i++)
-        {
-            triggers[i].enabled = false;
-        }
     }
 
     void PerformVictoryLerp()

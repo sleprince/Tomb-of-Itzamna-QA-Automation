@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 
 public class BrazierInteractable : MonoBehaviour, IInteractable
@@ -20,6 +21,7 @@ public class BrazierInteractable : MonoBehaviour, IInteractable
     public void Interact(Transform interactorTransform)
     {
         LightBrazier();
+        interactorTransform.GetComponent<ThirdPersonController>().HandleLightFire();
     }
 
     private void LightBrazier()

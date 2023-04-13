@@ -44,12 +44,13 @@ GameObject:
   - component: {fileID: 7338008439976120934}
   - component: {fileID: 5943076236566158787}
   - component: {fileID: 8475487597505259785}
+  - component: {fileID: 5746869592408891939}
   m_Layer: 0
   m_Name: TempleArcPillar_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7338008439976120934
 Transform:
@@ -116,6 +117,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5746869592408891939
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7970816502295693532}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2021807789054286323, guid: cf61edaf4907780469097dd9399200af, type: 3}
 --- !u!1001 &2925608498087907933
 PrefabInstance:
   m_ObjectHideFlags: 0

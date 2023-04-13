@@ -8,6 +8,7 @@ TagManager:
   - JournalUI
   - Interactable
   - MovableObject
+  - Wall
   layers:
   - Default
   - TransparentFX

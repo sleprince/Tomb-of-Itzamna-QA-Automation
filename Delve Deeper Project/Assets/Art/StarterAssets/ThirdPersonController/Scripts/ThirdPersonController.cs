@@ -75,6 +75,8 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [SerializeField] Transform raycastPoint;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -99,6 +101,7 @@ namespace StarterAssets
         private int _animIDMotionSpeed;
         private int _animIDPulling;
         private int _animIDPushing;
+        private int _animIDLightFire;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -112,7 +115,7 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
-        public bool MovingHeavyObject = false;
+        [HideInInspector] public bool MovingHeavyObject = false;
 
         private bool IsCurrentDeviceMouse
         {
@@ -179,6 +182,7 @@ namespace StarterAssets
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
             _animIDPulling = Animator.StringToHash("Pulling");
             _animIDPushing = Animator.StringToHash("Pushing");
+            _animIDLightFire = Animator.StringToHash("LightFire");
         }
 
         private void GroundedCheck()
@@ -270,12 +274,23 @@ namespace StarterAssets
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
+            RaycastHit hit;
+            int wallLayer = 1 << 8;
 
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+            if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out hit, 1f, wallLayer))
+            {
+                Debug.DrawRay(raycastPoint.position, raycastPoint.forward);
+                _controller.Move(Vector3.zero);
+            }
+            else
+            {
+                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-            // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+                // move the player
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+
+            }
 
             // update animator if using character
             if (_hasAnimator)
@@ -367,6 +382,14 @@ namespace StarterAssets
             if (_hasAnimator)
             {
                 _animator.SetBool(_animIDPushing, interactPressed);
+            }
+        }
+
+        public void HandleLightFire()
+        {
+            if (_hasAnimator)
+            {
+                _animator.SetTrigger(_animIDLightFire);
             }
         }
 
