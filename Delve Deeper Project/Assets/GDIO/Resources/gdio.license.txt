@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<license>
+  <licensee>Steffan Le Prince_steffanleprince@gmail.com_Steffan Le Prince</licensee>
+  <licenseid>TRIAL</licenseid>
+  <hostid>ANY</hostid>
+  <platforms>
+    <platform>Windows</platform>
+    <platform>macOS</platform>
+    <platform>iOS</platform>
+  </platforms>
+  <addins>
+    <addin>Visual Studio</addin>
+    <addin>Visual Studio Mac</addin>
+  </addins>
+  <start_date>2023-06-10</start_date>
+  <expiration_date>2023-06-25</expiration_date>
+  <signature>BD74F90BA692DAB5DE899A1BD4FB7BCA5178199156929D197B81B7C294521587146093013DFF5DFF6CBB3BD1058EA66FCCAFA93887390366732204A66FBB2C0D</signature>
+</license>
