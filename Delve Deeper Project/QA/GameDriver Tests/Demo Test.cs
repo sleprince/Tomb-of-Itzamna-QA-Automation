@@ -25,11 +25,6 @@ namespace DemoTest
             // Enable input hooking
             api.EnableHooks(HookingObject.ALL);
 
-            //Start the Game - in this example we're waiting for an object called "QuitButton" to become active
-            //api.WaitForObject("//*[@name='QuitButton']");
-            //api.Wait(3000);
-            //api.ClickObject(MouseButtons.LEFT, "//*[@name='QuitButton']", 30);
-
             Test1();
 
         }
