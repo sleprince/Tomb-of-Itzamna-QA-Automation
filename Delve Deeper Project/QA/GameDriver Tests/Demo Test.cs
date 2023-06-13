@@ -25,20 +25,21 @@ namespace DemoTest
             // Enable input hooking
             api.EnableHooks(HookingObject.ALL);
 
-            Test1();
-
         }
 
         [Test]
         public void Test1()
         {
-            //first example test after start has been clicked, take a screenshot
-            //api.CaptureScreenshot("start.jpg");
+
+
+            api.WaitForObject("//*[@name='QuitButton']");
+            api.Wait(3000);
+            //api.ClickObject(MouseButtons.LEFT, "//*[@name='QuitButton']", 30);
+
             api.WaitForObject("//*[@name='ControlsButton']");
             api.Wait(3000);
             api.ClickObject(MouseButtons.LEFT, "//*[@name='ControlsButton']", 30);
 
-            Test2();
 
         }
 
@@ -50,10 +51,9 @@ namespace DemoTest
             api.Wait(3000);
             api.ClickObject(MouseButtons.LEFT, "//*[@name='StartButton']", 30);
             api.Wait(3000);
+            //first example test after start has been clicked, take a screenshot
+            api.CaptureScreenshot("start.jpg");
 
-            api.WaitForObject("//*[@name='QuitButton']");
-            api.Wait(3000);
-            api.ClickObject(MouseButtons.LEFT, "//*[@name='QuitButton']", 30);
 
 
         }

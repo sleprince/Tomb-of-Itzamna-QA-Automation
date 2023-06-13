@@ -27129,8 +27129,8 @@ MonoBehaviour:
   m_Script: {fileID: -1383544988, guid: d9400e390ea2b4310acf9733beee2be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnableKeyboardHooks: 1
-  m_EnableMouseHooks: 1
+  m_EnableKeyboardHooks: 0
+  m_EnableMouseHooks: 0
   m_ForceOldInputSystem: 0
   m_ListeningPort: 19734
 --- !u!4 &717444295
